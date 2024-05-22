@@ -1,3 +1,3 @@
-JourneyGem
+# Journey-Gem
 
-React project
+• The application consists in making a travel planning application made using React.
