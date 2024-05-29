@@ -1,8 +1,11 @@
 import LinkNav from "./LinkNav";
 import { routes } from "./NavBar";
-import { DropdownContainer, LinkContainer } from "/src/components/NavBar/NavBar.style";
+import {
+  DropdownContainer,
+  LinkContainer,
+} from "/src/components/NavBar/NavBar.style";
 
-function Dropdown({ functieDeApelatinDropdown }) {
+function Dropdown() {
   return (
     <DropdownContainer>
       <LinkContainer>
@@ -12,7 +15,6 @@ function Dropdown({ functieDeApelatinDropdown }) {
             title={el.title}
             href={el.href}
             subtitle="Subtitlu"
-            functieDeApelat={functieDeApelatinDropdown}
           />
         ))}
       </LinkContainer>
