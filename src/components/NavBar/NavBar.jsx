@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Dropdown from "./DropDown" ;
+import Dropdown from "./DropDown";
 import LinkNav from "./LinkNav";
 import {
   Logo,
@@ -11,18 +11,14 @@ import { List, X } from "react-bootstrap-icons";
 
 export const routes = [
   { title: "Home", href: "home" },
-  { title: "Movies", href: "movies" },
-  { title: "Add", href: "add" },
-  { title: "Edit/Delete", href: "edit-delete" },
-  { title: "Recomand", href: "recomand" },
+  { title: "All packages", href: "all-packages" },
+  { title: "Add new package", href: "add-new-package" },
+  { title: "Edit or delete a package", href: "edit-or-delete" },
+  { title: "Reserved packages", href: "reserved-packages" },
 ];
 
 function NavBar() {
   const [displayDropdown, setDisplayDropdown] = useState(false);
-
-  const handleClick = (titlu) => {
-    console.log("Esti pe titlu-> ", titlu);
-  };
 
   const handleDisplayDropdown = () => {
     setDisplayDropdown(!displayDropdown);
@@ -38,19 +34,13 @@ function NavBar() {
             title={el.title}
             href={el.href}
             subtitle="Subtitlu"
-            functieDeApelat={handleClick}
           />
         ))}
       </LinkContainerDesktop>
       <ButtonDropdown onClick={() => handleDisplayDropdown()}>
         {!displayDropdown ? <List size={40} /> : <X size={40} />}
       </ButtonDropdown>
-      {displayDropdown && (
-        <Dropdown
-          onFocus={() => handleDisplayDropdown()}
-          functieDeApelatinDropdown={handleClick}
-        />
-      )}
+      {displayDropdown && <Dropdown onFocus={() => handleDisplayDropdown()} />}
     </NavbarContainer>
   );
 }
