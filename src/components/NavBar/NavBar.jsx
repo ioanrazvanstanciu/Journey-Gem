@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import Dropdown from "./DropDown";
 import LinkNav from "./LinkNav";
 import {
@@ -23,26 +23,42 @@ function NavBar() {
   const handleDisplayDropdown = () => {
     setDisplayDropdown(!displayDropdown);
   };
+  const [isOpaque, setIsOpaque] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 150) {
+      setIsOpaque(true);
+    } else {
+      setIsOpaque(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
-    <NavbarContainer>
-      <Logo src="src\assets\logo_app.png"></Logo>
-      <LinkContainerDesktop>
-        {routes.map((el, index) => (
-          <LinkNav
-            key={name + index}
-            title={el.title}
-            href={el.href}
-            subtitle="Subtitlu"
-          />
-        ))}
-      </LinkContainerDesktop>
-      <ButtonDropdown onClick={() => handleDisplayDropdown()}>
-        {!displayDropdown ? <List size={40} /> : <X size={40} />}
-      </ButtonDropdown>
-      {displayDropdown && <Dropdown onFocus={() => handleDisplayDropdown()} />}
-    </NavbarContainer>
-  );
+    <NavbarContainer as="NavbarContainer" isOpaque={isOpaque}>
+    <Logo src="src\assets\logo_app.png"></Logo>
+    <LinkContainerDesktop>
+      {routes.map((el, index) => (
+        <LinkNav
+          key={name + index}
+          title={el.title}
+          href={el.href}
+          subtitle="Subtitlu"
+        />
+      ))}
+    </LinkContainerDesktop>
+    <ButtonDropdown onClick={() => handleDisplayDropdown()}>
+      {!displayDropdown ? <List size={40} /> : <X size={40} />}
+    </ButtonDropdown>
+    {displayDropdown && <Dropdown isOpaque={isOpaque}  onFocus={() => handleDisplayDropdown()} />}
+  </NavbarContainer>
+);
 }
 
-export default NavBar;
+export default NavBar; 

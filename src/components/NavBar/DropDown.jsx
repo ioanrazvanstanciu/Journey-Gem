@@ -5,9 +5,9 @@ import {
   LinkContainer,
 } from "/src/components/NavBar/NavBar.style";
 
-function Dropdown() {
+function Dropdown({ isOpaque }) {
   return (
-    <DropdownContainer>
+    <DropdownContainer isOpaque={isOpaque}>
       <LinkContainer>
         {routes.map((el, index) => (
           <LinkNav
