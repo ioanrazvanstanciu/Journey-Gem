@@ -9,7 +9,7 @@
             "zi_check_in": "01.06.2024",
             "zi_check_out": "08.06.2024",
             "nr_pers": 2,
-            "mod_transport": "avion",
+            "mod_transport": "plane",
             "pret_sejur": "1000",
             "moneda_sejur": "euro"
         },
@@ -22,7 +22,7 @@
             "zi_check_in": "10.07.2024",
             "zi_check_out": "15.07.2024",
             "nr_pers": 4,
-            "mod_transport": "autocar",
+            "mod_transport": "bus",
             "pret_sejur": "1700",
             "moneda_sejur": "euro"
         },
@@ -35,7 +35,7 @@
             "zi_check_in": "15.08.2024",
             "zi_check_out": "19.08.2024",
             "nr_pers": 2,
-            "mod_transport": "autocar",
+            "mod_transport": "bus",
             "pret_sejur": "6000",
             "moneda_sejur": "ron"
         },
@@ -48,7 +48,7 @@
             "zi_check_in": "01.09.2024",
             "zi_check_out": "11.09.2024",
             "nr_pers": 2,
-            "mod_transport": "avion",
+            "mod_transport": "plane",
             "pret_sejur": "6000",
             "moneda_sejur": "euro"
         },
@@ -61,7 +61,7 @@
             "zi_check_in": "20.09.2024",
             "zi_check_out": "26.09.2024",
             "nr_pers": 2,
-            "mod_transport": "autocar",
+            "mod_transport": "bus",
             "pret_sejur": "4000",
             "moneda_sejur": "ron"
         }
