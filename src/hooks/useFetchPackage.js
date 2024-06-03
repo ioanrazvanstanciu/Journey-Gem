@@ -18,7 +18,7 @@ const useFetchPackages = (id = "") => {
         setPackages(packageData);
         setLoading(false);
       } catch (error) {
-        setError("Eroare 808");
+        setError("Error code 808! Unable to connect to the server.");
         setLoading(false);
       }
     };
