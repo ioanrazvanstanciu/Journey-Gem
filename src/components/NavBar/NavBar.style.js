@@ -1,67 +1,62 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import {
-  DARK_GRAY,
-  DARK_GREEN,
-  RED_ORANGE,
-  WHITE_NEUTRAL,
-} from "../../constants/color";
-
-export const Title = styled.h1`
-  color: ${WHITE_NEUTRAL};
-`;
+import {WHITE_NEUTRAL , DARK_GREEN , BEIGE , LIGHT_GRAY, DARK_GRAY, LIGHT_GREEN} from "../../constants/color";
 
 export const Logo = styled.img`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 60px;
+  height: 60px;
 `;
 
 export const NavbarContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  text-align: center;
-  vertical-align: middle;
-  background: ${RED_ORANGE};
-  color: white;
-  max-height: 56px;
-  padding: 8px 16px;
-  position: relative;
+ display: flex;
+ width: 100% ; 
+ background-color: ${({ isOpaque }) => (isOpaque ? BEIGE : 'rgba(255, 255, 255, 0)')};
+ transition: background-color 1s ease;
+ box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+ align-items: center ;
+ padding: 10px 20px;
+ margin: 0 ;
+ position: fixed ; 
+ top: 0px;
 `;
 
 export const LinkNavStyle = styled(Link)`
   text-decoration: none;
   cursor: pointer;
-  color: ${WHITE_NEUTRAL};
   padding: 8px 16px;
   margin: 0;
-  border-radius: 4px;
+  color: black;
+  font-weight: 700;
+  font-size: 16px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
 
   &:hover {
-    background: ${DARK_GRAY};
-    color: ${WHITE_NEUTRAL};
-    border-radius: 0;
+    &:hover{
+    background-color: ${LIGHT_GRAY};
+    border-radius: 20px;
+    color: ${DARK_GREEN};
+  }
   }
 
   @media screen and (max-width: 820px) {
-    color: ${DARK_GREEN};
+  
   }
 `;
 
 export const DropdownContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  background: ${WHITE_NEUTRAL};
-  color: ${DARK_GREEN};
-  width: 200px;
+  width: 350px;
+  height: 250px;
   position: absolute;
-  top: 56px;
+  top: 80px;
   right: 0;
   display: none;
-  border-radius: 8px;
-
+  background-color: ${({ isOpaque }) => (isOpaque ? BEIGE : 'rgba(255, 255, 255, 0.5)')};
+  border-bottom-left-radius: 10px;
+  padding: 10px 0px;
+  transition: background-color 1s ease;
   @media screen and (max-width: 820px) {
     display: block;
   }
@@ -70,17 +65,26 @@ export const DropdownContainer = styled.div`
 export const LinkContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center ; 
   justify-content: space-between;
-  background: white;
-  color: ${DARK_GRAY};
   width: 100%;
+  height: 100%;
+  
+  a {
+    margin-bottom: 8px; 
+  }
+
+  a:last-child {
+    margin-bottom: 0; 
+  }
 `;
 
 export const LinkContainerDesktop = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center ; 
   width: 100%;
+  gap: 10px;
 
   @media screen and (max-width: 820px) {
     display: none;
@@ -90,22 +94,23 @@ export const LinkContainerDesktop = styled.div`
 export const ButtonDropdown = styled.button`
   width: 40px;
   height: 40px;
-  color: ${WHITE_NEUTRAL};
+  color: ${DARK_GREEN};
   background: none;
   display: none;
   padding: 0;
   margin: 0;
   border: none;
+  position: absolute ; 
+  top: 20px;
+  right: 90px;
+  cursor: pointer ; 
 
   &:hover {
-    background: ${DARK_GREEN};
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    
   }
 
   @media screen and (max-width: 820px) {
     display: block;
   }
 `;
-
-export const NewButton = styled(ButtonDropdown)`
-  color: ${RED_ORANGE};
-`; // exemplu de extindere a componentei
