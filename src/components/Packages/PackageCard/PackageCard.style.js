@@ -12,8 +12,8 @@ import {
 } from "/src/constants/color.js";
 
 export const Card = styled(Link)`
-  background-color: ${LIGHT_GREEN};
-  color: ${WHITE_NEUTRAL};
+  background-color: ${WHITE_NEUTRAL};
+  color: ${LIGHT_GREEN};
   height: 300px;
   width: 900px;
   padding: 20px;
@@ -22,6 +22,12 @@ export const Card = styled(Link)`
   border-radius: 10px;
   cursor: pointer;
   text-decoration: none;
+  border: 2px solid ${LIGHT_GREEN};
+
+  &:hover {
+    background-color: ${LIGHT_GREEN};
+    color: ${WHITE_NEUTRAL};
+  }
 `;
 
 export const PrimaLinie = styled.div`
