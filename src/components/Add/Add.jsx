@@ -34,13 +34,20 @@ const Add = () => {
   });
 
   const handleChange = (e, name) => {
-    setInputObject({ ...inputObject, [name]: e.target.value });
-    handleError(e.target.value, name);
+    const capitalizedValue = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
+    setInputObject({ ...inputObject, [name]: capitalizedValue });
+    handleError(capitalizedValue, name);
   };
-
+  
   const handleDateChange = (value, name) => {
-    setInputObject({ ...inputObject, [name]: value });
-    handleError(value, name);
+    const formattedDate = value.toLocaleDateString('ro-RO', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    });
+    setInputObject({ ...inputObject, [name]: formattedDate });
+    handleError(formattedDate, name);
+    console.log(formattedDate, name);
   };
 
   const handleError = (value, name) => {
@@ -177,9 +184,9 @@ const Add = () => {
       .then((response) => {
         if (response.ok) {
           toast("Pachetul tau tocmai a fost adaugat!", {
-            autoClose: 5000,
+            autoClose: 1500,
             onClose: () => {
-              window.location.reload();
+              window.location.href = "/all-packages";
             },
           });
         } else {
