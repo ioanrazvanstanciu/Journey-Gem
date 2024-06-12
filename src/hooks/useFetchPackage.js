@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const API_URL = "http://localhost:3001/pachete";
 
 const useFetchPackages = (id = "") => {
-  const [packages, setPackages] = useState(null);
+  const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 

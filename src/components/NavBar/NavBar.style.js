@@ -18,6 +18,7 @@ export const NavbarContainer = styled.div`
  margin: 0 ;
  position: fixed ; 
  top: 0px;
+ z-index : 999;
 `;
 
 export const LinkNavStyle = styled(Link)`
