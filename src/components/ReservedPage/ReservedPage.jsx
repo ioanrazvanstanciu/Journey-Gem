@@ -8,11 +8,11 @@ import {
   PackageAllDetailsAntet,
   PackageAllDetailsValoare,
   ReserveButton,
-} from "./Package.style";
+} from "./ReservedPage.style";
 import useFetchPackages from "../../hooks/useFetchPackage";
 import {itsReserved} from "../Packages/PackageCard/PackageCard"
 
-function Package() {
+function ReservedPage() {
   const { id } = useParams();
   const { packages: my_package, error, loading } = useFetchPackages("/" + id);
 
@@ -91,4 +91,4 @@ function Package() {
   );
 }
 
-export default Package;
+export default ReservedPage;

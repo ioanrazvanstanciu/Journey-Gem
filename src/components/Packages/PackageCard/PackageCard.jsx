@@ -24,6 +24,26 @@ import {
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import AirlineStopsRoundedIcon from "@mui/icons-material/AirlineStopsRounded";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+
+export const handleReserveButton = (param_id , param_este_rezervat) => {
+  fetch(`http://localhost:3001/pachete/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(inputObject),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+}
+
+export const itsReserved = (param_id , param_este_rezervat)=> {
+  if(param_este_rezervat === 0 ){
+    return <button>Reserve package</button>
+  }
+  else {
+    return <p><CheckCircleIcon /> Reserved!</p>
+  }
+}
 
 function PackageCard({
   id,
@@ -37,7 +57,9 @@ function PackageCard({
   mod_transport,
   pret_sejur,
   moneda_sejur,
-}) {
+  este_rezervat
+})
+{
   return (
     <Card to={`/package/${id}`}>
       <PrimaLinie>
@@ -45,8 +67,10 @@ function PackageCard({
           <Image src={imagine_pachet}></Image>
         </ImageContainer>
         <DetaliiPrimaLinie>
+          
           <OrasSiTara>
-            {oras}, {tara}
+           <div> {oras}, {tara} </div>
+           <div>{itsReserved( id , este_rezervat )}</div>
           </OrasSiTara>
           <DetaliiGrupate>
             <ZileConcediu>

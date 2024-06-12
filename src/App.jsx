@@ -8,6 +8,8 @@ import Package from "./components/Package/Package";
 import Add from "./components/Add/Add";
 import EditDelete from "./components/EditDelete/EditDelete";
 import EditDeleteCompleteForm from "./components/EditDeleteCompleteForm/EditDeleteCompleteForm";
+import Reserved from "./components/Reserved/Reserved";
+import ReservedPage from "./components/ReservedPage/ReservedPage";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path="/package/:id" element={<Package />} />
         <Route path="/add-new-package" element={<Add />} />
         <Route path="/edit-or-delete" element={<EditDelete />} />
+        <Route path="reserved-packages" element={<Reserved />} />
+        <Route path="/package-reserved/:id" element={<ReservedPage />} />
         <Route
           path="/edit-or-delete/package/:id"
           element={<EditDeleteCompleteForm />}
