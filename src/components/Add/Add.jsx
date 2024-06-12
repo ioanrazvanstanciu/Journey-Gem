@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { AddContainer, AddButton , GlobalStyles } from "./Add.style";
-import {AddForm , AddFormDatePicker }from "./AddForm";
+import { AddContainer, AddButton, GlobalStyles } from "./Add.style";
+import { AddForm, AddFormDatePicker } from "./AddForm";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Add = () => {
-  const [ziCheckIn, setZiCheckIn] = useState(null);
-  const [ziCheckOut, setZiCheckOut] = useState(null);
+  const [ziCheckIn, setZiCheckIn] = useState(new Date());
+  const [ziCheckOut, setZiCheckOut] = useState(new Date());
   const [inputObject, setInputObject] = useState({
     tara: "",
     oras: "",
@@ -37,7 +37,11 @@ const Add = () => {
     setInputObject({ ...inputObject, [name]: e.target.value });
     handleError(e.target.value, name);
   };
-  
+
+  const handleDateChange = (value, name) => {
+    setInputObject({ ...inputObject, [name]: value });
+    handleError(value, name);
+  };
 
   const handleError = (value, name) => {
     switch (name) {
@@ -77,23 +81,26 @@ const Add = () => {
         if (value <= 0) {
           setError({
             ...error,
-            [name]: "Numărul de zile de concediu trebuie să fie mai mare decât 0",
+            [name]:
+              "Numărul de zile de concediu trebuie să fie mai mare decât 0",
           });
         } else {
           setError({ ...error, [name]: undefined });
         }
         break;
-        case "zi_check_in":
-          case "zi_check_out":
-            if (!value) {
-              setError({
-                ...error,
-                [name]: `Trebuie să selectați o zi de ${name === "zi_check_in" ? "check-in" : "check-out"}`,
-              });
-            } else {
-              setError({ ...error, [name]: undefined });
-            }
-            break;
+      case "zi_check_in":
+      case "zi_check_out":
+        if (!value) {
+          setError({
+            ...error,
+            [name]: `Trebuie să selectați o zi de ${
+              name === "zi_check_in" ? "check-in" : "check-out"
+            }`,
+          });
+        } else {
+          setError({ ...error, [name]: undefined });
+        }
+        break;
       case "nr_pers":
         if (value <= 0) {
           setError({
@@ -139,15 +146,22 @@ const Add = () => {
     }
   };
   const hasErrors = (errors) => {
-    const hasValidationErrors = Object.values(errors).some((error) => error !== undefined );
-    const allInputsEmpty = Object.values(inputObject).some((value) => value === "" || value === 0 || value=== null );
+    const hasValidationErrors = Object.values(errors).some(
+      (error) => error !== undefined
+    );
+    const allInputsEmpty = Object.values(inputObject).some(
+      (value) => value === "" || value === 0 || value === null
+    );
     return hasValidationErrors || allInputsEmpty;
   };
 
   const handleSubmit = () => {
     if (hasErrors(error)) {
       if (Object.values(error).some((error) => error !== undefined)) {
-        toast.error("Nu poți trimite formularul până când toate erorile sunt rezolvate!", { autoClose: 5000 });
+        toast.error(
+          "Nu poți trimite formularul până când toate erorile sunt rezolvate!",
+          { autoClose: 5000 }
+        );
       } else {
         toast.error("Toate câmpurile trebuie completate!", { autoClose: 5000 });
       }
@@ -169,7 +183,7 @@ const Add = () => {
             },
           });
         } else {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
       })
       .catch((error) => {
@@ -180,24 +194,24 @@ const Add = () => {
 
   return (
     <AddContainer>
-      <GlobalStyles /> 
+      <GlobalStyles />
       {Object.keys(inputObject).map((el, index) => {
-        if (el === 'zi_check_in' || el === 'zi_check_out') {
+        if (el === "zi_check_in" || el === "zi_check_out") {
           return (
-  <AddFormDatePicker
-  key={index}
-  name={el}
-  selected={el === 'zi_check_in' ? ziCheckIn : ziCheckOut}
-  handleChange={(date) => {
-    if (el === 'zi_check_in') {
-      setZiCheckIn(date);
-    } else {
-      setZiCheckOut(date);
-    }
-    handleChange(date, el);
-  }}
-  error={error[el]}
-/>
+            <AddFormDatePicker
+              key={index}
+              name={el}
+              selected={el === "zi_check_in" ? ziCheckIn : ziCheckOut}
+              handleChange={(date) => {
+                if (el === "zi_check_in") {
+                  setZiCheckIn(date);
+                } else {
+                  setZiCheckOut(date);
+                }
+                handleDateChange(date, el);
+              }}
+              error={error[el]}
+            />
           );
         } else {
           return (
@@ -205,7 +219,9 @@ const Add = () => {
               key={index}
               name={el}
               type={
-                el === "nr_zile_concediu" || el === "nr_pers" || el === "pret_sejur"
+                el === "nr_zile_concediu" ||
+                el === "nr_pers" ||
+                el === "pret_sejur"
                   ? "number"
                   : "text"
               }

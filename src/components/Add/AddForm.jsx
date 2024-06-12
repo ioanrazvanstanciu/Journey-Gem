@@ -1,30 +1,36 @@
-import { useState } from 'react';
-import { AddLabel, AddInput, ErrorP, ExclamationErrorIcon, StyledDatePicker } from './Add.style';
+import { useState } from "react";
+import {
+  AddLabel,
+  AddInput,
+  ErrorP,
+  ExclamationErrorIcon,
+  StyledDatePicker,
+} from "./Add.style";
 
 const formatLabel = (str) => {
   const customMappings = {
-    nr: 'Numar',
-    zile: 'Zile',
-    pers: 'Persoane',
-    pret: 'Preț',
-    sejur: 'Sejur',
-    moneda: 'Moneda',
-    imagine: 'Imagine',
-    mod: 'Mod',
-    transport: 'Transport',
-    check: 'Check',
-    in: 'In',
-    out: 'Out'
+    nr: "Numar",
+    zile: "Zile",
+    pers: "Persoane",
+    pret: "Preț",
+    sejur: "Sejur",
+    moneda: "Moneda",
+    imagine: "Imagine",
+    mod: "Mod",
+    transport: "Transport",
+    check: "Check",
+    in: "In",
+    out: "Out",
   };
 
   return str
-    .split('_')
+    .split("_")
     .map((word) =>
       customMappings[word]
         ? customMappings[word]
         : word.charAt(0).toUpperCase() + word.slice(1)
     )
-    .join(' ');
+    .join(" ");
 };
 
 export const AddForm = ({ name, handleChange, type, value, error }) => {
@@ -32,7 +38,7 @@ export const AddForm = ({ name, handleChange, type, value, error }) => {
 
   return (
     <>
-      <div style={{ position: 'relative', width: '100%' , left: '25%' }}>
+      <div style={{ position: "relative", width: "100%", left: "25%" }}>
         <AddInput
           placeholder=""
           defaultValue={value}
@@ -43,7 +49,10 @@ export const AddForm = ({ name, handleChange, type, value, error }) => {
           type={type}
           onFocus={() => setIsFocused(true)}
         />
-        <AddLabel isfocused={isFocused ? isFocused.toString() : undefined} hasvalue={value ? value : undefined}>
+        <AddLabel
+          isfocused={isFocused ? isFocused.toString() : undefined}
+          hasvalue={value ? value : undefined}
+        >
           {formatLabel(name)}
         </AddLabel>
       </div>
@@ -60,13 +69,16 @@ export const AddForm = ({ name, handleChange, type, value, error }) => {
 export const AddFormDatePicker = ({ name, error, handleChange, selected }) => {
   return (
     <>
-      <div style={{ position: 'relative', width: '100%' , left:'25%'}}>
+      <div style={{ position: "relative", width: "100%", left: "25%" }}>
         <StyledDatePicker
+          dateFormat={"dd.MM.yyyy"}
           placeholderText=""
           selected={selected}
           onChange={(date) => handleChange(date, name)}
         />
-        <AddLabel hasvalue={selected ? selected : undefined}>{formatLabel(name)}</AddLabel>
+        <AddLabel hasvalue={selected ? selected : undefined}>
+          {formatLabel(name)}
+        </AddLabel>
       </div>
       {error && (
         <ErrorP>
