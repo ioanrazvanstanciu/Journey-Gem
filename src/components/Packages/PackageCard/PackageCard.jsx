@@ -24,26 +24,25 @@ import {
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import AirlineStopsRoundedIcon from "@mui/icons-material/AirlineStopsRounded";
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import CircleNotificationsRoundedIcon from "@mui/icons-material/CircleNotificationsRounded";
 
-export const handleReserveButton = (param_id , param_este_rezervat) => {
-  fetch(`http://localhost:3001/pachete/${id}`, {
-    method: "PUT",
-    body: JSON.stringify(inputObject),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-}
-
-export const itsReserved = (param_id , param_este_rezervat)=> {
-  if(param_este_rezervat === 0 ){
-    return <button>Reserve package</button>
+export const itsReserved = (este_rezervat) => {
+  if (este_rezervat === 0) {
+    return (
+      <p>
+        <CircleNotificationsRoundedIcon /> Click on this card to see and
+        reserve!
+      </p>
+    );
+  } else {
+    return (
+      <p>
+        <CheckCircleIcon /> Reserved!
+      </p>
+    );
   }
-  else {
-    return <p><CheckCircleIcon /> Reserved!</p>
-  }
-}
+};
 
 function PackageCard({
   id,
@@ -57,9 +56,8 @@ function PackageCard({
   mod_transport,
   pret_sejur,
   moneda_sejur,
-  este_rezervat
-})
-{
+  este_rezervat,
+}) {
   return (
     <Card to={`/package/${id}`}>
       <PrimaLinie>
@@ -67,10 +65,11 @@ function PackageCard({
           <Image src={imagine_pachet}></Image>
         </ImageContainer>
         <DetaliiPrimaLinie>
-          
           <OrasSiTara>
-           <div> {oras}, {tara} </div>
-           <div>{itsReserved( id , este_rezervat )}</div>
+            <div>
+              {oras}, {tara}
+            </div>
+            <div>{itsReserved(este_rezervat)}</div>
           </OrasSiTara>
           <DetaliiGrupate>
             <ZileConcediu>

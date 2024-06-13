@@ -10,7 +10,7 @@ import {
   ReserveButton,
 } from "./ReservedPage.style";
 import useFetchPackages from "../../hooks/useFetchPackage";
-import {itsReserved} from "../Packages/PackageCard/PackageCard"
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 function ReservedPage() {
   const { id } = useParams();
@@ -83,8 +83,11 @@ function ReservedPage() {
               </PackageAllDetailsValoare>
             </PackageAllDetailsLinieDetaliu>
           </PackageAllDetails>
-          <div>{itsReserved(my_package.este_rezervat)}</div>
-        
+          <div>
+            <p>
+              <CheckCircleIcon /> Reserved!
+            </p>
+          </div>
         </>
       )}
     </PackageContainer>

@@ -10,7 +10,58 @@ import {
   ReserveButton,
 } from "./Package.style";
 import useFetchPackages from "../../hooks/useFetchPackage";
-import {itsReserved} from "../Packages/PackageCard/PackageCard"
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+
+export const handleReservePackage = (pachetul_meu) => {
+  let pachet_modificat = {
+    ...pachetul_meu,
+    este_rezervat: 1,
+  };
+
+  fetch(`http://localhost:3001/pachete/${pachet_modificat.id}`, {
+    method: "PUT",
+    body: JSON.stringify(pachet_modificat),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(async (response) => {
+      if (response.ok) {
+        await response.json();
+        toast("Ai rezervat cu succes pachetul dorit!", {
+          autoClose: 2500,
+          onClose: () => {
+            window.location.href = "/reserved-packages";
+          },
+        });
+      } else {
+        throw new Error("Network response was not ok");
+      }
+    })
+    .catch((error) => {
+      console.error("A aparut o eroare:", error);
+      toast.error("Eroare la rezervarea pachetului!");
+    });
+};
+
+export const isThisSpecificPackageReserved = (pachetul_meu) => {
+  if (pachetul_meu.este_rezervat === 0) {
+    return (
+      <ReserveButton onClick={() => handleReservePackage(pachetul_meu)}>
+        Reserve package!
+      </ReserveButton>
+    );
+  } else {
+    return (
+      <p>
+        <CheckCircleIcon />
+        Reserved!
+      </p>
+    );
+  }
+};
 
 function Package() {
   const { id } = useParams();
@@ -18,6 +69,7 @@ function Package() {
 
   return (
     <PackageContainer>
+      <ToastContainer />
       {loading && !error && <div>Loading...</div>}
       {error && <div>Error on getting data, Server is down :( </div>}
       {my_package && (
@@ -83,8 +135,7 @@ function Package() {
               </PackageAllDetailsValoare>
             </PackageAllDetailsLinieDetaliu>
           </PackageAllDetails>
-          <div>{itsReserved(my_package.este_rezervat)}</div>
-        
+          <div>{isThisSpecificPackageReserved(my_package)}</div>
         </>
       )}
     </PackageContainer>
