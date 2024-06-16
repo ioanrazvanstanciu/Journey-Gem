@@ -9,47 +9,52 @@ import {
   BEIGE,
   LIGHT_BLUE,
   PALE_YELLOW,
+  DARK_BLUE
 } from "/src/constants/color.js";
 
+
 export const Card = styled.div`
-  background-color: ${WHITE_NEUTRAL};
-  color: ${LIGHT_GREEN};
+  background-color: ${BEIGE};
+  color: ${DARK_BLUE};
   height: 300px;
   width: 900px;
-  padding: 20px;
+  padding: 25px;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  text-decoration: none;
-  border: 2px solid ${LIGHT_GREEN};
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 `;
 
 export const PrimaLinie = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
 `;
 
 export const ImageContainer = styled.div`
   height: 180px;
   width: 280px;
+  overflow: hidden;
   border-radius: 10px;
 `;
 
 export const Image = styled.img`
   height: 100%;
   width: 100%;
+  object-fit: cover;
   border-radius: 10px;
 `;
 
 export const DetaliiPrimaLinie = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 2rem;
+  margin-left: 1.5rem;
 `;
 
 export const OrasSiTara = styled.div`
   font-size: 25px;
-  font-weight: 600;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
 `;
 
 export const DetaliiGrupate = styled.div`
@@ -57,40 +62,30 @@ export const DetaliiGrupate = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 8rem;
+  margin-top: 1rem;
   font-size: 15px;
-  font-weight: 600;
-  margin-top: 4rem;
+  gap: 10px;
 `;
 
 export const ZileConcediu = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
   gap: 0.25rem;
-  font-size: 15px;
-  font-weight: 600;
 `;
 
 export const NrPers = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
   gap: 0.25rem;
-  font-size: 15px;
-  font-weight: 600;
 `;
 
 export const ModTransport = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
   gap: 0.25rem;
-  font-size: 15px;
-  font-weight: 600;
 `;
 
 export const ADouaLinie = styled.div`
@@ -98,6 +93,7 @@ export const ADouaLinie = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-top: 1rem;
 `;
 
 export const SosirePlecare = styled.div`
@@ -112,7 +108,7 @@ export const SosirePlecare = styled.div`
 
 export const AnteteSosirePlecare = styled.div`
   font-size: 23px;
-  font-weight: 600;
+  font-weight: 700;
 `;
 
 export const PretMoneda = styled.div`
@@ -122,7 +118,6 @@ export const PretMoneda = styled.div`
   align-items: center;
   gap: 0.5rem;
   font-size: 20px;
-  font-weight: 600;
 `;
 
 export const PretMonedaValori = styled.div`
@@ -133,8 +128,6 @@ export const PretMonedaValori = styled.div`
   align-items: center;
   gap: 0.5rem;
   font-size: 25px;
-  font-weight: 600;
-  border-bottom: dotted;
 `;
 
 export const CardImgContainer = styled.div`
@@ -144,17 +137,14 @@ export const CardImgContainer = styled.div`
 `;
 
 export const CardImg = styled.img`
-  padding: 0;
   width: 100%;
-  max-height: 300px;
-  height: 100%;
+  max-height: 100%;
+  object-fit: cover;
   border-radius: 4px;
 `;
 
 export const CardInfoContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  background: rgba(250, 250, 250, 0.1);
+  background-color: ${LIGHT_GRAY};
   padding: 8px;
   margin-top: 16px;
   height: 250px;
@@ -162,30 +152,31 @@ export const CardInfoContainer = styled.div`
 
 export const Title = styled.h1`
   margin: 16px 0;
-  color: ${(props) => (props.isWhite ? white : white)};
+  color: ${DARK_BLUE};
+  font-size: 24px;
+  font-weight: 700;
 `;
 
 export const Text = styled.p`
-  margin: 0 0 4px;
+  margin: 0;
 `;
 
 export const UperText = styled.span`
   text-transform: uppercase;
-  text-decoration: solid;
 `;
 
-export const EditDeleteButton = styled(Link)`
-  padding: 20px;
-  border-radius: 10px;
+export const EditDeleteButton = styled.button`
+  padding: 10px 20px;
+  border-radius: 8px;
   cursor: pointer;
-  border: 2px solid ${DARK_GREEN};
-  font-size: 17px;
-  font-weight: 700;
+  border: 2px solid ${DARK_BLUE};
   background-color: ${WHITE_NEUTRAL};
-  color: ${DARK_GREEN};
+  color: ${DARK_BLUE};
+  font-weight: 700;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 
   &:hover {
-    background-color: ${DARK_GREEN};
+    background-color: ${DARK_BLUE};
     color: ${WHITE_NEUTRAL};
   }
 `;
