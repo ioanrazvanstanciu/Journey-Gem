@@ -41,7 +41,7 @@ export const EditForm = ({ name, handleChange, type, value, error }) => {
       <div style={{ position: "relative", width: "100%", left: "25%" }}>
         <EditInput
           placeholder=""
-          value={value}
+          defaultValue={value}
           onBlur={(e) => {
             handleChange(e, name);
             setIsFocused(false);
@@ -89,4 +89,3 @@ export const EditFormDatePicker = ({ name, error, handleChange, selected }) => {
     </>
   );
 };
-

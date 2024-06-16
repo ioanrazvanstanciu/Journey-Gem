@@ -34,20 +34,20 @@ const Add = () => {
   });
 
   const handleChange = (e, name) => {
-    const capitalizedValue = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
+    const capitalizedValue =
+      e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
     setInputObject({ ...inputObject, [name]: capitalizedValue });
     handleError(capitalizedValue, name);
   };
-  
+
   const handleDateChange = (value, name) => {
-    const formattedDate = value.toLocaleDateString('ro-RO', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
+    const formattedDate = value.toLocaleDateString("ro-RO", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
     });
     setInputObject({ ...inputObject, [name]: formattedDate });
     handleError(formattedDate, name);
-    console.log(formattedDate, name);
   };
 
   const handleError = (value, name) => {
@@ -167,16 +167,19 @@ const Add = () => {
       if (Object.values(error).some((error) => error !== undefined)) {
         toast.error(
           "Nu poți trimite formularul până când toate erorile sunt rezolvate!",
-          { autoClose: 5000 }
+          { autoClose: 2500 }
         );
       } else {
-        toast.error("Toate câmpurile trebuie completate!", { autoClose: 5000 });
+        toast.error("Toate câmpurile trebuie completate!", { autoClose: 2500 });
       }
       return;
     }
     fetch(`http://localhost:3001/pachete`, {
       method: "POST",
-      body: JSON.stringify(inputObject),
+      body: JSON.stringify({
+        ...inputObject,
+        este_rezervat: 0,
+      }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -184,7 +187,7 @@ const Add = () => {
       .then((response) => {
         if (response.ok) {
           toast("Pachetul tau tocmai a fost adaugat!", {
-            autoClose: 1500,
+            autoClose: 2500,
             onClose: () => {
               window.location.href = "/all-packages";
             },

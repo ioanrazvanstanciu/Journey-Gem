@@ -1,10 +1,26 @@
 import { useState, useEffect } from "react";
-import { GlobalStyles, EditButton , EditContainer } from "./EditDeleteCompleteForm.style";
-import {EditForm , EditFormDatePicker} from "./EditDeleteCompleteFormHandleForm";
-import { useParams  } from "react-router-dom";
+import {
+  GlobalStyles,
+  EditButton,
+  EditContainer,
+} from "./EditDeleteCompleteForm.style";
+import {
+  EditForm,
+  EditFormDatePicker,
+} from "./EditDeleteCompleteFormHandleForm";
+import { useParams } from "react-router-dom";
 import useFetchPackages from "./../../hooks/useFetchPackage";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+export const formatMyDate = (my_date_as_string) => {
+  if (!my_date_as_string) return null;
+
+  let parti = my_date_as_string.split(".");
+  let my_new_date = "" + parti[1] + "." + parti[0] + "." + parti[2];
+
+  return my_new_date;
+};
 
 const EditDeleteCompleteForm = () => {
   const { id } = useParams();
@@ -14,19 +30,23 @@ const EditDeleteCompleteForm = () => {
     loading,
   } = useFetchPackages("/" + id);
 
+  let pachet_de_lucru = {
+    tara: my_package.tara,
+    oras: my_package.oras,
+    imagine_pachet: my_package.imagine_pachet,
+    nr_zile_concediu: my_package.nr_zile_concediu,
+    zi_check_in: formatMyDate(my_package.zi_check_in),
+    zi_check_out: formatMyDate(my_package.zi_check_out),
+    nr_pers: my_package.nr_pers,
+    mod_transport: my_package.mod_transport,
+    pret_sejur: my_package.pret_sejur,
+    moneda_sejur: my_package.moneda_sejur,
+  };
+
   const [ziCheckIn, setZiCheckIn] = useState(new Date());
   const [ziCheckOut, setZiCheckOut] = useState(new Date());
   const [inputObject, setInputObject] = useState({
-    tara: "",
-    oras: "",
-    imagine_pachet: "",
-    nr_zile_concediu: 0,
-    zi_check_in: null,
-    zi_check_out: null,
-    nr_pers: 0,
-    mod_transport: "",
-    pret_sejur: 0,
-    moneda_sejur: "",
+    ...pachet_de_lucru,
   });
   const [error, setError] = useState({
     tara: undefined,
@@ -42,16 +62,15 @@ const EditDeleteCompleteForm = () => {
   });
 
   const handleChange = (e, name) => {
-    setInputObject({ ...inputObject, [name]: e.target.value});
+    setInputObject({ ...inputObject, [name]: e.target.value });
     handleError(e.target.value, name);
-    console.log("handle change" , e.target.value , name)
   };
 
   const handleDateChange = (value, name) => {
-    const formattedDate = value.toLocaleDateString('ro-RO', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
+    const formattedDate = value.toLocaleDateString("ro-RO", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
     });
     setInputObject({ ...inputObject, [name]: formattedDate });
     handleError(formattedDate, name);
@@ -173,16 +192,19 @@ const EditDeleteCompleteForm = () => {
       if (Object.values(error).some((error) => error !== undefined)) {
         toast.error(
           "Nu poți trimite formularul până când toate erorile sunt rezolvate!",
-          { autoClose: 5000 }
+          { autoClose: 2500 }
         );
       } else {
-        toast.error("Toate câmpurile trebuie completate!", { autoClose: 5000 });
+        toast.error("Toate câmpurile trebuie completate!", { autoClose: 2500 });
       }
       return;
     }
     fetch(`http://localhost:3001/pachete/${id}`, {
       method: "PUT",
-      body: JSON.stringify(inputObject),
+      body: JSON.stringify({
+        ...inputObject,
+        este_rezervat: 0,
+      }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -190,10 +212,10 @@ const EditDeleteCompleteForm = () => {
       .then((response) => {
         if (response.ok) {
           toast("Pachetul tau tocmai a fost modificat!", {
-            autoClose: 1500,
+            autoClose: 2500,
             onClose: () => {
-              window.location.href = "/edit-or-delete";
-             },
+              window.location.href = "/all-packages";
+            },
           });
         } else {
           throw new Error("Network response was not ok");
@@ -203,17 +225,15 @@ const EditDeleteCompleteForm = () => {
         console.error("A aparut o eroare:", error);
         toast.error("Eroare la modificarea pachetului!");
       });
-      console.log(inputObject);
   };
 
   useEffect(() => {
     if (my_package) {
-      const checkInDate = new Date(my_package.zi_check_in);
-      const checkOutDate = new Date(my_package.zi_check_out);
-      setInputObject({ ...my_package });
+      const checkInDate = new Date(pachet_de_lucru.zi_check_in);
+      const checkOutDate = new Date(pachet_de_lucru.zi_check_out);
+      setInputObject({ ...pachet_de_lucru });
       setZiCheckIn(isNaN(checkInDate) ? null : checkInDate);
       setZiCheckOut(isNaN(checkOutDate) ? null : checkOutDate);
-      console.log("use effect" , my_package , checkInDate , checkOutDate);
     }
   }, [my_package]);
 
@@ -221,48 +241,48 @@ const EditDeleteCompleteForm = () => {
     <EditContainer>
       <GlobalStyles />
       {Object.keys(inputObject)
-        .filter((el) => el !== 'id')
+        .filter((el) => el !== "id")
         .map((el, index) => {
           if (el === "zi_check_in" || el === "zi_check_out") {
             return (
-            <EditFormDatePicker
-              key={index}
-              name={el}
-              selected={el === "zi_check_in" ? ziCheckIn : ziCheckOut}
-              handleChange={(date) => {
-                if (el === "zi_check_in") {
-                  setZiCheckIn(date);
-                } else {
-                  setZiCheckOut(date);
+              <EditFormDatePicker
+                key={index}
+                name={el}
+                selected={el === "zi_check_in" ? ziCheckIn : ziCheckOut}
+                handleChange={(date) => {
+                  if (el === "zi_check_in") {
+                    setZiCheckIn(date);
+                  } else {
+                    setZiCheckOut(date);
+                  }
+                  handleDateChange(date, el);
+                }}
+                error={error[el]}
+              />
+            );
+          } else {
+            return (
+              <EditForm
+                key={index}
+                name={el}
+                type={
+                  el === "nr_zile_concediu" ||
+                  el === "nr_pers" ||
+                  el === "pret_sejur"
+                    ? "number"
+                    : "text"
                 }
-                handleDateChange(date, el);
-              }}
-              error={error[el]}
-            />
-          );
-        } else {
-          return (
-            <EditForm
-              key={index}
-              name={el}
-              type={
-                el === "nr_zile_concediu" ||
-                el === "nr_pers" ||
-                el === "pret_sejur"
-                  ? "number"
-                  : "text"
-              }
-              value={inputObject[el]}
-              handleChange={handleChange}
-              error={error[el]}
-            />
-          );
-        }
-      })}
+                value={inputObject[el]}
+                handleChange={handleChange}
+                error={error[el]}
+              />
+            );
+          }
+        })}
       <EditButton onClick={handleSubmit}>Submit</EditButton>
       <ToastContainer />
     </EditContainer>
   );
-  };
+};
 
 export default EditDeleteCompleteForm;

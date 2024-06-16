@@ -1,101 +1,94 @@
 import {
-    Card,
-    PrimaLinie,
-    ImageContainer,
-    Image,
-    DetaliiPrimaLinie,
-    OrasSiTara,
-    DetaliiGrupate,
-    ZileConcediu,
-    NrPers,
-    ModTransport,
-    ADouaLinie,
-    SosirePlecare,
-    AnteteSosirePlecare,
-    PretMoneda,
-    PretMonedaValori,
-    CardImgContainer,
-    CardInfoContainer,
-    CardImg,
-    Title,
-    Text,
-    UperText,
-  } from "./ReservedCard.style";
-  import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-  import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
-  import AirlineStopsRoundedIcon from "@mui/icons-material/AirlineStopsRounded";
-  import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-  
-  export const itsReserved = (param)=> {
-    if(param === 0 ){
-      return <button>Reserve package</button>
-    }
-    else {
-      return <p><CheckCircleIcon /> Reserved!</p>
-    }
-  }
-  
-  function ReservedCard({
-    id,
-    tara,
-    oras,
-    imagine_pachet,
-    nr_zile_concediu,
-    zi_check_in,
-    zi_check_out,
-    nr_pers,
-    mod_transport,
-    pret_sejur,
-    moneda_sejur,
-    este_rezervat
-  })
-  {
-    return (
-      <Card to={`/package-reserved/${id}`}>
-        <PrimaLinie>
-          <ImageContainer>
-            <Image src={imagine_pachet}></Image>
-          </ImageContainer>
-          <DetaliiPrimaLinie>
-            
-            <OrasSiTara>
-             <div> {oras}, {tara} </div>
-             <div>{itsReserved(este_rezervat)}</div>
-            </OrasSiTara>
-            <DetaliiGrupate>
-              <ZileConcediu>
-                <CalendarMonthIcon />
-                {nr_zile_concediu} days
-              </ZileConcediu>
-              <NrPers>
-                <PeopleAltOutlinedIcon />
-                {nr_pers} pers
-              </NrPers>
-              <ModTransport>
-                <AirlineStopsRoundedIcon />
-                {mod_transport}
-              </ModTransport>
-            </DetaliiGrupate>
-          </DetaliiPrimaLinie>
-        </PrimaLinie>
-        <ADouaLinie>
-          <SosirePlecare>
-            <AnteteSosirePlecare>Check in:</AnteteSosirePlecare>
-            <div>{zi_check_in}</div>
-            <AnteteSosirePlecare>Check out:</AnteteSosirePlecare>
-            <div>{zi_check_out}</div>
-          </SosirePlecare>
-          <PretMoneda>
-            <div>Total vacation cost:</div>
-            <PretMonedaValori>
-              <div>{pret_sejur}</div>
-              <div>{moneda_sejur}</div>
-            </PretMonedaValori>
-          </PretMoneda>
-        </ADouaLinie>
-      </Card>
-    );
-  }
-  
-  export default ReservedCard;
-  
+  Card,
+  PrimaLinie,
+  ImageContainer,
+  Image,
+  DetaliiPrimaLinie,
+  OrasSiTara,
+  DetaliiGrupate,
+  ZileConcediu,
+  NrPers,
+  ModTransport,
+  ADouaLinie,
+  SosirePlecare,
+  AnteteSosirePlecare,
+  PretMoneda,
+  PretMonedaValori,
+  CardImgContainer,
+  CardInfoContainer,
+  CardImg,
+  Title,
+  Text,
+  UperText,
+} from "./ReservedCard.style";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
+import AirlineStopsRoundedIcon from "@mui/icons-material/AirlineStopsRounded";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+
+function ReservedCard({
+  id,
+  tara,
+  oras,
+  imagine_pachet,
+  nr_zile_concediu,
+  zi_check_in,
+  zi_check_out,
+  nr_pers,
+  mod_transport,
+  pret_sejur,
+  moneda_sejur,
+}) {
+  return (
+    <Card to={`/package-reserved/${id}`}>
+      <PrimaLinie>
+        <ImageContainer>
+          <Image src={imagine_pachet}></Image>
+        </ImageContainer>
+        <DetaliiPrimaLinie>
+          <OrasSiTara>
+            <div>
+              {oras}, {tara}
+            </div>
+            <div>
+              <p>
+                <CheckCircleIcon /> Reserved!
+              </p>
+            </div>
+          </OrasSiTara>
+          <DetaliiGrupate>
+            <ZileConcediu>
+              <CalendarMonthIcon />
+              {nr_zile_concediu} days
+            </ZileConcediu>
+            <NrPers>
+              <PeopleAltOutlinedIcon />
+              {nr_pers} pers
+            </NrPers>
+            <ModTransport>
+              <AirlineStopsRoundedIcon />
+              {mod_transport}
+            </ModTransport>
+          </DetaliiGrupate>
+        </DetaliiPrimaLinie>
+      </PrimaLinie>
+      <ADouaLinie>
+        <SosirePlecare>
+          <AnteteSosirePlecare>Check in:</AnteteSosirePlecare>
+          <div>{zi_check_in}</div>
+          <AnteteSosirePlecare>Check out:</AnteteSosirePlecare>
+          <div>{zi_check_out}</div>
+        </SosirePlecare>
+        <PretMoneda>
+          <div>Total vacation cost:</div>
+          <PretMonedaValori>
+            <div>{pret_sejur}</div>
+            <div>{moneda_sejur}</div>
+          </PretMonedaValori>
+        </PretMoneda>
+      </ADouaLinie>
+    </Card>
+  );
+}
+
+export default ReservedCard;
