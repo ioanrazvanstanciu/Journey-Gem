@@ -10,6 +10,7 @@ import EditDelete from "./components/EditDelete/EditDelete";
 import EditDeleteCompleteForm from "./components/EditDeleteCompleteForm/EditDeleteCompleteForm";
 import Reserved from "./components/Reserved/Reserved";
 import ReservedPage from "./components/ReservedPage/ReservedPage";
+import CustomAddUser from "./components/CustomAddUser/CustomAddUser";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/edit-or-delete" element={<EditDelete />} />
         <Route path="reserved-packages" element={<Reserved />} />
         <Route path="/package-reserved/:id" element={<ReservedPage />} />
+        <Route path="/add-custom-package" element={<CustomAddUser />} />
         <Route
           path="/edit-or-delete/package/:id"
           element={<EditDeleteCompleteForm />}
