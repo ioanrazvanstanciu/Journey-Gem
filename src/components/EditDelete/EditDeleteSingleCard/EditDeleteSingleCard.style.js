@@ -9,9 +9,8 @@ import {
   BEIGE,
   LIGHT_BLUE,
   PALE_YELLOW,
-  DARK_BLUE
+  DARK_BLUE,
 } from "/src/constants/color.js";
-
 
 export const Card = styled.div`
   background-color: ${BEIGE};
@@ -165,7 +164,7 @@ export const UperText = styled.span`
   text-transform: uppercase;
 `;
 
-export const EditDeleteButton = styled.button`
+export const EditDeleteButton = styled(Link)`
   padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
