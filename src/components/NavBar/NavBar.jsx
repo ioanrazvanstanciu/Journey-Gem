@@ -15,6 +15,7 @@ export const routes = [
   { title: "Add new package", href: "add-new-package" },
   { title: "Edit or delete a package", href: "edit-or-delete" },
   { title: "Reserved packages", href: "reserved-packages" },
+  { title: "Add custom package", href: "add-custom-package" }
 ];
 
 function NavBar() {
