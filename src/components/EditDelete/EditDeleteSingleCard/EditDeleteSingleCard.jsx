@@ -74,7 +74,7 @@ function EditDeleteSingleCard({
         </SosirePlecare>
         <div>
           <EditDeleteButton to={`/edit-or-delete/package/${id}`}>
-            Edit/Delete
+            Edit  /  Delete
           </EditDeleteButton>
         </div>
         <PretMoneda>

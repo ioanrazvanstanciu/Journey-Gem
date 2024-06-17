@@ -3,6 +3,13 @@ import {
   GlobalStyles,
   EditButton,
   EditContainer,
+  DeletePackageButton,
+  ButtonsContainer,
+  ModalDeleteContainer , 
+  ModalDeleteButton , 
+  ModalDeleteMessage , 
+  ModalDeleteCancel,
+  ModalOverlay
 } from "./EditDeleteCompleteForm.style";
 import {
   EditForm,
@@ -60,6 +67,7 @@ const EditDeleteCompleteForm = () => {
     pret_sejur: undefined,
     moneda_sejur: undefined,
   });
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const handleChange = (e, name) => {
     setInputObject({ ...inputObject, [name]: e.target.value });
@@ -226,7 +234,33 @@ const EditDeleteCompleteForm = () => {
         toast.error("Eroare la modificarea pachetului!");
       });
   };
+  
+  const handleDeleteModal = () => {
+    setShowDeleteModal(true);
+  };
+  const handleDeletePackage = () => {
+    fetch(`http://localhost:3001/pachete/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (response.ok) {
+          toast("Pachetul tau tocmai a fost sters!", {
+            autoClose: 2500,
+            onClose: () => {
+              window.location.href = "/all-packages";
+            },
+          });
+          setShowDeleteModal(false);
+        } else {
+          throw new Error("Network response was not ok");
+        }
+      })
+      .catch((error) => {
+        console.error("A aparut o eroare:", error);
+        toast.error("Eroare la stergerea pachetului!");
+      });
 
+  }
   useEffect(() => {
     if (my_package) {
       const checkInDate = new Date(pachet_de_lucru.zi_check_in);
@@ -279,7 +313,22 @@ const EditDeleteCompleteForm = () => {
             );
           }
         })}
-      <EditButton onClick={handleSubmit}>Submit</EditButton>
+            <ButtonsContainer>
+            <EditButton onClick={handleSubmit}>Modify package</EditButton>
+            <DeletePackageButton onClick={handleDeleteModal}>Delete Package</DeletePackageButton>
+            </ButtonsContainer>
+        
+            {showDeleteModal && (
+              <ModalOverlay>
+          <ModalDeleteContainer>
+            <ModalDeleteMessage>
+              Are you sure you want to delete this package?
+            </ModalDeleteMessage>
+            <ModalDeleteButton onClick={handleDeletePackage}>Delete</ModalDeleteButton>
+            <ModalDeleteCancel onClick={() => setShowDeleteModal(false)}>Cancel</ModalDeleteCancel>
+          </ModalDeleteContainer>
+          </ModalOverlay>
+      )}
       <ToastContainer />
     </EditContainer>
   );
