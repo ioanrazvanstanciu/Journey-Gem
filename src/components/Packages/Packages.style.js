@@ -1,28 +1,43 @@
 import styled from "styled-components";
 import { WHITE_NEUTRAL, PALE_YELLOW, DARK_GREEN, LIGHT_GREEN} from "../../constants/color";
+
+
+
+ 
+export const LoadingMessage = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 20px;
+`
+export const ErrorMessage = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 20px;
+color: red;
+`
+
 export const PackageContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
-  margin: 48px 90px;
-  padding: 64px;
+  flex-direction: column;
   height: 100%;
-  min-height: 100vh;
+  flex: 1 1 250px;
+  max-width: 100%;
+  min-width: 250px;
   gap: 16px;
-  flex-wrap: wrap;
   color: black;
   font-weight: 700;
 `;
 export const SortingBarContainer = styled.div`
   margin: 0 9px;
-  position: absolute;
-  left: 0;
-  top: 200px;
   display: flex;
+  flex-shrink: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 25px;
-  width: 25%;
+  width: 400px;
   height: 350px;
   background-color: ${PALE_YELLOW};
   border-radius: 7px;
@@ -66,10 +81,14 @@ export const SortingBarDropdownItems = styled.option`
   padding: 10px;
   margin-right: 10px;
 `;
-export const NoMatchMessage = styled.p`
-  font-size: 14px;
+export const NoMatchMessage = styled.div`
+  font-size: 20px;
   color: #e74c3c;
   margin-top: 10px;
+  width: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 export const ClearSortBarButton = styled.button`
   background-color: red ;
@@ -87,4 +106,11 @@ export const ClearSortBarButton = styled.button`
     color: red;
     border: 1px solid red;
   }
+`;
+export const ComponentsContainer = styled.div`
+display: flex;
+justify-content: center;
+margin: 200px 30px;
+margin-left: 0px;
+gap: 25px;
 `;

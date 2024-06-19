@@ -11,12 +11,28 @@ import {
   PALE_YELLOW,
 } from "/src/constants/color.js";
 
+export const ClickForReserveP = styled.p`
+font-size: 20px;
+display: flex;
+align-items: flex-start;
+gap: 5px;
+`
+export const ItsReservedP = styled.p`
+font-size: 20px;
+display: flex;
+align-items: center;
+gap: 5px;
+`
+
 export const Card = styled(Link)`
   background-color: ${WHITE_NEUTRAL};
   color: ${LIGHT_GREEN};
   height: 300px;
-  width: 900px;
-  padding: 20px;
+  max-height: 100vh;
+  flex: 1 1 250px;
+  max-width: 100%;
+  min-width: 250px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -45,13 +61,14 @@ export const ImageContainer = styled.div`
 export const Image = styled.img`
   height: 100%;
   width: 100%;
+  object-fit: cover;
   border-radius: 10px;
 `;
 
 export const DetaliiPrimaLinie = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 2rem;
+  margin-left: 3rem;
 `;
 
 export const OrasSiTara = styled.div`

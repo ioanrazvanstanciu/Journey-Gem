@@ -9,6 +9,9 @@ import {
   SortingBarDropdownItems,
   NoMatchMessage,
   ClearSortBarButton,
+  ComponentsContainer,
+  LoadingMessage,
+  ErrorMessage
 } from "./Packages.style";
 import PackageCard from "./PackageCard/PackageCard";
 
@@ -81,8 +84,8 @@ function Packages() {
   }, [country, city, priceRange, currency, packages]);
 
   return (
-    <>
-      <SortingBarContainer>
+    <ComponentsContainer loc='ComponentsContainer'>
+      <SortingBarContainer loc='SortingBarContainer'>
         <ClearSortBarButton onClick={handleClearSortingBar}>
           Clear
         </ClearSortBarButton>
@@ -98,8 +101,8 @@ function Packages() {
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
-        <SortingBarDropdownContainer>
-          <SortingBarDropdown
+        <SortingBarDropdownContainer loc='SortingBarDropdownContainer'>
+          <SortingBarDropdown loc='SortingBarDropdown'
             value={currency}
             onChange={(e) => setCurrency(e.target.value)}
           >
@@ -144,8 +147,8 @@ function Packages() {
         </SortingBarDropdownContainer>
       </SortingBarContainer>
       <PackageContainer loc="PackageContainer">
-        {loading && <div>Loading...</div>}
-        {error && <div>{error} Error on getting data, server is down.</div>}
+        {loading && <LoadingMessage>Loading...</LoadingMessage>}
+        {error && <ErrorMessage>{error} Error on getting data, server is down.</ErrorMessage>}
         {!loading && !error && filteredPackages.length === 0 && (
           <NoMatchMessage>Sorry, no match for your search</NoMatchMessage>
         )}
@@ -154,7 +157,7 @@ function Packages() {
             <PackageCard key={my_package.tara} {...my_package} />
           ))}
       </PackageContainer>
-    </>
+    </ComponentsContainer>
   );
 }
 
