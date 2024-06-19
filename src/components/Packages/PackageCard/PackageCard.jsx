@@ -14,12 +14,8 @@ import {
   AnteteSosirePlecare,
   PretMoneda,
   PretMonedaValori,
-  CardImgContainer,
-  CardInfoContainer,
-  CardImg,
-  Title,
-  Text,
-  UperText,
+  ClickForReserveP ,
+  ItsReservedP
 } from "./PackageCard.style";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
@@ -30,16 +26,15 @@ import CircleNotificationsRoundedIcon from "@mui/icons-material/CircleNotificati
 export const itsReserved = (este_rezervat) => {
   if (este_rezervat === 0) {
     return (
-      <p>
-        <CircleNotificationsRoundedIcon /> Click on this card to see and
-        reserve!
-      </p>
+      <ClickForReserveP>
+        <CircleNotificationsRoundedIcon /> Click for details and reserve! 
+      </ClickForReserveP>
     );
   } else {
     return (
-      <p>
+      <ItsReservedP>
         <CheckCircleIcon /> Reserved!
-      </p>
+      </ItsReservedP>
     );
   }
 };
@@ -69,7 +64,6 @@ function PackageCard({
             <div>
               {oras}, {tara}
             </div>
-            <div>{itsReserved(este_rezervat)}</div>
           </OrasSiTara>
           <DetaliiGrupate>
             <ZileConcediu>
@@ -86,6 +80,7 @@ function PackageCard({
             </ModTransport>
           </DetaliiGrupate>
         </DetaliiPrimaLinie>
+        <div>{itsReserved(este_rezervat)}</div>
       </PrimaLinie>
       <ADouaLinie>
         <SosirePlecare>
