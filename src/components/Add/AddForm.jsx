@@ -51,7 +51,7 @@ export const AddForm = ({ name, handleChange, type, value, error }) => {
         />
         <AddLabel
           isfocused={isFocused ? isFocused.toString() : undefined}
-          hasvalue={value ? value : undefined}
+          $hasvalue={value ? value : undefined}
         >
           {formatLabel(name)}
         </AddLabel>
@@ -76,7 +76,7 @@ export const AddFormDatePicker = ({ name, error, handleChange, selected }) => {
           selected={selected}
           onChange={(date) => handleChange(date, name)}
         />
-        <AddLabel hasvalue={selected ? selected : undefined}>
+        <AddLabel $hasvalue={selected ? selected : undefined}>
           {formatLabel(name)}
         </AddLabel>
       </div>

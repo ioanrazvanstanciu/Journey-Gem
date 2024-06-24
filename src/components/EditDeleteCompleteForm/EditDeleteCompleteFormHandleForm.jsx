@@ -51,7 +51,7 @@ export const EditForm = ({ name, handleChange, type, value, error }) => {
         />
         <EditLabel
           isfocused={isFocused ? isFocused.toString() : undefined}
-          hasvalue={value ? value : undefined}
+          $hasvalue={value ? value : undefined}
         >
           {formatLabel(name)}
         </EditLabel>
@@ -76,7 +76,7 @@ export const EditFormDatePicker = ({ name, error, handleChange, selected }) => {
           selected={selected}
           onChange={(date) => handleChange(date, name)}
         />
-        <EditLabel hasvalue={selected ? selected : undefined}>
+        <EditLabel $hasvalue={selected ? selected : undefined}>
           {formatLabel(name)}
         </EditLabel>
       </div>

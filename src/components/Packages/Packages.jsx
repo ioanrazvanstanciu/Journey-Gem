@@ -11,7 +11,7 @@ import {
   ClearSortBarButton,
   ComponentsContainer,
   LoadingMessage,
-  ErrorMessage
+  ErrorMessage,
 } from "./Packages.style";
 import PackageCard from "./PackageCard/PackageCard";
 
@@ -84,8 +84,8 @@ function Packages() {
   }, [country, city, priceRange, currency, packages]);
 
   return (
-    <ComponentsContainer loc='ComponentsContainer'>
-      <SortingBarContainer loc='SortingBarContainer'>
+    <ComponentsContainer $loc="ComponentsContainer">
+      <SortingBarContainer $loc="SortingBarContainer">
         <ClearSortBarButton onClick={handleClearSortingBar}>
           Clear
         </ClearSortBarButton>
@@ -101,8 +101,9 @@ function Packages() {
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
-        <SortingBarDropdownContainer loc='SortingBarDropdownContainer'>
-          <SortingBarDropdown loc='SortingBarDropdown'
+        <SortingBarDropdownContainer $loc="SortingBarDropdownContainer">
+          <SortingBarDropdown
+            $loc="SortingBarDropdown"
             value={currency}
             onChange={(e) => setCurrency(e.target.value)}
           >
@@ -146,9 +147,13 @@ function Packages() {
           </SortingBarDropdown>
         </SortingBarDropdownContainer>
       </SortingBarContainer>
-      <PackageContainer loc="PackageContainer">
+      <PackageContainer $loc="PackageContainer">
         {loading && <LoadingMessage>Loading...</LoadingMessage>}
-        {error && <ErrorMessage>{error} Error on getting data, server is down.</ErrorMessage>}
+        {error && (
+          <ErrorMessage>
+            {error} Error on getting data, server is down.
+          </ErrorMessage>
+        )}
         {!loading && !error && filteredPackages.length === 0 && (
           <NoMatchMessage>Sorry, no match for your search</NoMatchMessage>
         )}
