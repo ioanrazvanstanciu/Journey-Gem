@@ -20,7 +20,7 @@ function Reserved() {
   );
 
   return (
-    <PackageContainer loc="PackageContainer">
+    <PackageContainer $loc="PackageContainer">
       {loading && <div>Loading...</div>}
       {error && <div>{error} Error on getting data, server is down.</div>}
       {reservedPackages && reservedPackages.length > 0
