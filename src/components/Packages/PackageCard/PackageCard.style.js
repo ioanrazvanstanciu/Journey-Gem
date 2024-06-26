@@ -11,17 +11,15 @@ import {
   PALE_YELLOW,
 } from "/src/constants/color.js";
 
+export const ItsReservedDiv = styled.div`
+margin: 0 auto;
+`
+
 export const ClickForReserveP = styled.p`
 font-size: 20px;
-display: flex;
-align-items: flex-start;
-gap: 5px;
 `
 export const ItsReservedP = styled.p`
 font-size: 20px;
-display: flex;
-align-items: center;
-gap: 5px;
 `
 
 export const Card = styled(Link)`
@@ -44,18 +42,33 @@ export const Card = styled(Link)`
     background-color: ${LIGHT_GREEN};
     color: ${WHITE_NEUTRAL};
   }
+  @media (max-width: 750px) {
+   height: auto;
+  }
 `;
 
 export const PrimaLinie = styled.div`
+  position: relative;
   display: flex;
   flex-direction: row;
-  justify-content: stretch;
+  justify-content: flex-start;
+  width: 100%;
+
+  @media (max-width: 750px) {
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+  }
 `;
 
 export const ImageContainer = styled.div`
   height: 180px;
   width: 280px;
   border-radius: 10px;
+  @media (max-width: 750px) {
+   width: 80%;
+   height: auto;
+  }
 `;
 
 export const Image = styled.img`
@@ -68,7 +81,7 @@ export const Image = styled.img`
 export const DetaliiPrimaLinie = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 3rem;
+  margin-left: 15px;
 `;
 
 export const OrasSiTara = styled.div`
@@ -84,10 +97,11 @@ export const DetaliiGrupate = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 8rem;
+  gap: 25px;
   font-size: 15px;
   font-weight: 600;
   margin-top: 4rem;
+
 `;
 
 export const ZileConcediu = styled.div`
@@ -125,6 +139,9 @@ export const ADouaLinie = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 750px) {
+   flex-direction: column;
+  }
 `;
 
 export const SosirePlecare = styled.div`
@@ -135,6 +152,9 @@ export const SosirePlecare = styled.div`
   gap: 0.5rem;
   margin-top: 0.75rem;
   margin-left: 5.5rem;
+  @media (max-width: 750px) {
+   margin: 20px 0;
+  }
 `;
 
 export const AnteteSosirePlecare = styled.div`

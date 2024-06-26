@@ -8,6 +8,9 @@ import {
   SortingBarDropdownItems,
   NoMatchMessage,
   ClearSortBarButton,
+  ComponentsContainer,
+  ContainerShowHideSortbarButton,
+  ShowHideSortbarButton,
 } from "./EditDelete.style";
 import EditDeleteSingleCard from "./EditDeleteSingleCard/EditDeleteSingleCard";
 import { useState, useEffect } from "react";
@@ -20,6 +23,7 @@ function EditDelete() {
   const [priceRange, setPriceRange] = useState("");
   const [currency, setCurrency] = useState("");
   const [currencies, setCurrencies] = useState([]);
+  const [showSortBar, setShowSortBar] = useState(false);
 
   const handleClearSortingBar = () => {
     setCountry("");
@@ -27,6 +31,11 @@ function EditDelete() {
     setPriceRange("");
     setCurrency("");
   };
+
+  const handleShowHideSortBar = () => {
+    showSortBar === false ? setShowSortBar(true) : setShowSortBar(false);
+  };
+
   useEffect(() => {
     if (packages) {
       const uniqueCurrencies = [
@@ -72,69 +81,76 @@ function EditDelete() {
   }, [country, city, priceRange, currency, packages]);
 
   return (
-    <>
-      <SortingBarContainer>
-        <ClearSortBarButton onClick={handleClearSortingBar}>
-          Clear
-        </ClearSortBarButton>
-        <SortingBarInput
-          type="text"
-          placeholder="Filter by Country"
-          value={country}
-          onChange={(e) => setCountry(e.target.value)}
-        />
-        <SortingBarInput
-          type="text"
-          placeholder="Filter by City"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-        />
-        <SortingBarDropdownContainer>
-          <SortingBarDropdown
-            value={currency}
-            onChange={(e) => setCurrency(e.target.value)}
-          >
-            <SortingBarDropdownItems value="">
-              Select Currency
-            </SortingBarDropdownItems>
-            {currencies.map((currency, index) => (
-              <SortingBarDropdownItems key={index} value={currency}>
-                {currency}
+    <ComponentsContainer>
+      <ContainerShowHideSortbarButton>
+        <ShowHideSortbarButton onClick={handleShowHideSortBar}>
+          {showSortBar === true ? "Hide" : "Search package"}
+        </ShowHideSortbarButton>
+      </ContainerShowHideSortbarButton>
+      {showSortBar && (
+        <SortingBarContainer>
+          <ClearSortBarButton onClick={handleClearSortingBar}>
+            Clear
+          </ClearSortBarButton>
+          <SortingBarInput
+            type="text"
+            placeholder="Filter by Country"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+          />
+          <SortingBarInput
+            type="text"
+            placeholder="Filter by City"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+          />
+          <SortingBarDropdownContainer>
+            <SortingBarDropdown
+              value={currency}
+              onChange={(e) => setCurrency(e.target.value)}
+            >
+              <SortingBarDropdownItems value="">
+                Select Currency
               </SortingBarDropdownItems>
-            ))}
-          </SortingBarDropdown>
-          <SortingBarDropdown
-            value={priceRange}
-            onChange={(e) => setPriceRange(e.target.value)}
-          >
-            <SortingBarDropdownItems value="">
-              Filter by Price
-            </SortingBarDropdownItems>
-            <SortingBarDropdownItems value="0-500">
-              0-500
-            </SortingBarDropdownItems>
-            <SortingBarDropdownItems value="500-1000">
-              500-1000
-            </SortingBarDropdownItems>
-            <SortingBarDropdownItems value="1000-2000">
-              1000-2000
-            </SortingBarDropdownItems>
-            <SortingBarDropdownItems value="2000-3000">
-              2000-3000
-            </SortingBarDropdownItems>
-            <SortingBarDropdownItems value="3000-4000">
-              3000-4000
-            </SortingBarDropdownItems>
-            <SortingBarDropdownItems value="4000-5000">
-              4000-5000
-            </SortingBarDropdownItems>
-            <SortingBarDropdownItems value="5000+">
-              5000+
-            </SortingBarDropdownItems>
-          </SortingBarDropdown>
-        </SortingBarDropdownContainer>
-      </SortingBarContainer>
-      <PackageContainer $loc="PackageContainer">
+              {currencies.map((currency, index) => (
+                <SortingBarDropdownItems key={index} value={currency}>
+                  {currency}
+                </SortingBarDropdownItems>
+              ))}
+            </SortingBarDropdown>
+            <SortingBarDropdown
+              value={priceRange}
+              onChange={(e) => setPriceRange(e.target.value)}
+            >
+              <SortingBarDropdownItems value="">
+                Filter by Price
+              </SortingBarDropdownItems>
+              <SortingBarDropdownItems value="0-500">
+                0-500
+              </SortingBarDropdownItems>
+              <SortingBarDropdownItems value="500-1000">
+                500-1000
+              </SortingBarDropdownItems>
+              <SortingBarDropdownItems value="1000-2000">
+                1000-2000
+              </SortingBarDropdownItems>
+              <SortingBarDropdownItems value="2000-3000">
+                2000-3000
+              </SortingBarDropdownItems>
+              <SortingBarDropdownItems value="3000-4000">
+                3000-4000
+              </SortingBarDropdownItems>
+              <SortingBarDropdownItems value="4000-5000">
+                4000-5000
+              </SortingBarDropdownItems>
+              <SortingBarDropdownItems value="5000+">
+                5000+
+              </SortingBarDropdownItems>
+            </SortingBarDropdown>
+          </SortingBarDropdownContainer>
+        </SortingBarContainer>
+      )}
+      <PackageContainer loc="PackageContainer">
         {loading && <div>Loading...</div>}
         {error && <div>{error} Error on getting data, server is down.</div>}
         {!loading && !error && filteredPackages.length === 0 && (
@@ -145,7 +161,7 @@ function EditDelete() {
             <EditDeleteSingleCard key={my_package.tara} {...my_package} />
           ))}
       </PackageContainer>
-    </>
+    </ComponentsContainer>
   );
 }
 

@@ -2,13 +2,47 @@ import styled from "styled-components";
 import { WHITE_NEUTRAL, PALE_YELLOW, DARK_GREEN, LIGHT_GREEN} from "../../constants/color";
 
 
+export const ComponentsContainer = styled.div`
+display: flex;
+justify-content: center;
+margin: 200px 30px;
+gap: 25px;
 
+@media (max-width: 1400px) {
+    flex-direction: column;
+  }
+;
+`
+
+
+export const ContainerShowHideSortbarButton = styled.div`
+
+`;
+export const ShowHideSortbarButton = styled.button`
+   background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    &:hover{
+      background-color: #388E3C;
+      transform: scale(1.05);
+    }
+    &:active{
+      background-color: #2E7D32;
+    }
+`;
  
 export const LoadingMessage = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
 font-size: 20px;
+width: 100%;
+margin: 30px 0px;
 `
 export const ErrorMessage = styled.div`
 display: flex;
@@ -16,6 +50,9 @@ justify-content: center;
 align-items: center;
 font-size: 20px;
 color: red;
+margin: 0 auto;
+width: 100%;
+margin: 30px 0px;
 `
 
 export const PackageContainer = styled.div`
@@ -39,9 +76,13 @@ export const SortingBarContainer = styled.div`
   gap: 25px;
   width: 400px;
   height: 350px;
-  background-color: ${PALE_YELLOW};
+  background-color: ${LIGHT_GREEN};
   border-radius: 7px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  @media (max-width: 1400px) {
+    width: 60%;
+   margin: 0 auto ;
+  }
 `;
 
 export const SortingBarInput = styled.input`
@@ -106,11 +147,4 @@ export const ClearSortBarButton = styled.button`
     color: red;
     border: 1px solid red;
   }
-`;
-export const ComponentsContainer = styled.div`
-display: flex;
-justify-content: center;
-margin: 200px 30px;
-margin-left: 0px;
-gap: 25px;
 `;

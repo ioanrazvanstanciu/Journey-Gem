@@ -13,28 +13,47 @@ import {
 } from "/src/constants/color.js";
 
 export const Card = styled.div`
-  background-color: ${BEIGE};
+  background-color: ${WHITE_NEUTRAL};
   color: ${DARK_BLUE};
   height: 300px;
-  width: 900px;
-  padding: 25px;
+  max-height: 100vh;
+  flex: 1 1 250px;
+  max-width: 100%;
+  min-width: 250px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  text-decoration: none;
+  border: 2px solid ${LIGHT_GREEN};
+  @media (max-width: 750px) {
+   height: auto;
+  }
 `;
 
 export const PrimaLinie = styled.div`
+  position: relative;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+
+  @media (max-width: 750px) {
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+  }
 `;
 
 export const ImageContainer = styled.div`
   height: 180px;
   width: 280px;
-  overflow: hidden;
   border-radius: 10px;
+  @media (max-width: 750px) {
+   width: 80%;
+   height: auto;
+  }
 `;
 
 export const Image = styled.img`
@@ -47,13 +66,15 @@ export const Image = styled.img`
 export const DetaliiPrimaLinie = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 1.5rem;
+  margin-left: 15px;
 `;
 
 export const OrasSiTara = styled.div`
   font-size: 25px;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+  font-weight: 600;
+  display: flex;
+  flex-direction: row ; 
+  justify-content: space-between;
 `;
 
 export const DetaliiGrupate = styled.div`
@@ -61,30 +82,41 @@ export const DetaliiGrupate = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1rem;
+  gap: 25px;
   font-size: 15px;
-  gap: 10px;
+  font-weight: 600;
+  margin-top: 4rem;
+
 `;
 
 export const ZileConcediu = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   gap: 0.25rem;
+  font-size: 15px;
+  font-weight: 600;
 `;
 
 export const NrPers = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   gap: 0.25rem;
+  font-size: 15px;
+  font-weight: 600;
 `;
 
 export const ModTransport = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   gap: 0.25rem;
+  font-size: 15px;
+  font-weight: 600;
 `;
 
 export const ADouaLinie = styled.div`
@@ -92,7 +124,10 @@ export const ADouaLinie = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1rem;
+  gap: 20px;
+  @media (max-width: 750px) {
+   flex-direction: column;
+  }
 `;
 
 export const SosirePlecare = styled.div`
@@ -103,11 +138,14 @@ export const SosirePlecare = styled.div`
   gap: 0.5rem;
   margin-top: 0.75rem;
   margin-left: 5.5rem;
+  @media (max-width: 750px) {
+   margin: 20px 0;
+  }
 `;
 
 export const AnteteSosirePlecare = styled.div`
   font-size: 23px;
-  font-weight: 700;
+  font-weight: 600;
 `;
 
 export const PretMoneda = styled.div`
@@ -117,6 +155,7 @@ export const PretMoneda = styled.div`
   align-items: center;
   gap: 0.5rem;
   font-size: 20px;
+  font-weight: 600;
 `;
 
 export const PretMonedaValori = styled.div`
@@ -127,6 +166,8 @@ export const PretMonedaValori = styled.div`
   align-items: center;
   gap: 0.5rem;
   font-size: 25px;
+  font-weight: 600;
+  border-bottom: dotted;
 `;
 
 export const CardImgContainer = styled.div`
@@ -136,14 +177,17 @@ export const CardImgContainer = styled.div`
 `;
 
 export const CardImg = styled.img`
+  padding: 0;
   width: 100%;
-  max-height: 100%;
-  object-fit: cover;
+  max-height: 300px;
+  height: 100%;
   border-radius: 4px;
 `;
 
 export const CardInfoContainer = styled.div`
-  background-color: ${LIGHT_GRAY};
+  display: flex;
+  flex-direction: column;
+  background: rgba(250, 250, 250, 0.1);
   padding: 8px;
   margin-top: 16px;
   height: 250px;
@@ -151,17 +195,16 @@ export const CardInfoContainer = styled.div`
 
 export const Title = styled.h1`
   margin: 16px 0;
-  color: ${DARK_BLUE};
-  font-size: 24px;
-  font-weight: 700;
+  color: ${(props) => (props.isWhite ? white : white)};
 `;
 
 export const Text = styled.p`
-  margin: 0;
+  margin: 0 0 4px;
 `;
 
 export const UperText = styled.span`
   text-transform: uppercase;
+  text-decoration: solid;
 `;
 
 export const EditDeleteButton = styled(Link)`
@@ -173,6 +216,7 @@ export const EditDeleteButton = styled(Link)`
   color: ${DARK_BLUE};
   font-weight: 700;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  text-decoration: none;
 
   &:hover {
     background-color: ${DARK_BLUE};

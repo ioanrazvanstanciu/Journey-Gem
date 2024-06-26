@@ -12,6 +12,8 @@ import {
   ComponentsContainer,
   LoadingMessage,
   ErrorMessage,
+  ContainerShowHideSortbarButton,
+  ShowHideSortbarButton 
 } from "./Packages.style";
 import PackageCard from "./PackageCard/PackageCard";
 
@@ -23,6 +25,7 @@ function Packages() {
   const [priceRange, setPriceRange] = useState("");
   const [currency, setCurrency] = useState("");
   const [currencies, setCurrencies] = useState([]);
+  const [showSortBar , setShowSortBar] = useState(false);
 
   const handleClearSortingBar = () => {
     setCountry("");
@@ -30,6 +33,9 @@ function Packages() {
     setPriceRange("");
     setCurrency("");
   };
+  const handleShowHideSortBar = ()=>{
+   showSortBar===false ? setShowSortBar(true) : setShowSortBar(false)
+  }
   useEffect(() => {
     if (!localStorage.getItem("reloaded")) {
       localStorage.setItem("reloaded", "true");
@@ -85,68 +91,76 @@ function Packages() {
 
   return (
     <ComponentsContainer $loc="ComponentsContainer">
-      <SortingBarContainer $loc="SortingBarContainer">
-        <ClearSortBarButton onClick={handleClearSortingBar}>
-          Clear
-        </ClearSortBarButton>
-        <SortingBarInput
-          type="text"
-          placeholder="Filter by Country"
-          value={country}
-          onChange={(e) => setCountry(e.target.value)}
-        />
-        <SortingBarInput
-          type="text"
-          placeholder="Filter by City"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-        />
-        <SortingBarDropdownContainer $loc="SortingBarDropdownContainer">
-          <SortingBarDropdown
-            $loc="SortingBarDropdown"
-            value={currency}
-            onChange={(e) => setCurrency(e.target.value)}
-          >
-            <SortingBarDropdownItems value="">
-              Select Currency
-            </SortingBarDropdownItems>
-            {currencies.map((currency, index) => (
-              <SortingBarDropdownItems key={index} value={currency}>
-                {currency}
+      <ContainerShowHideSortbarButton>
+        <ShowHideSortbarButton onClick={handleShowHideSortBar}>
+          {showSortBar === true ? "Hide" : "Search package"}
+        </ShowHideSortbarButton>
+      </ContainerShowHideSortbarButton>
+      {showSortBar && (
+        <SortingBarContainer $loc="SortingBarContainer">
+          <ClearSortBarButton onClick={handleClearSortingBar}>
+            Clear
+          </ClearSortBarButton>
+          <SortingBarInput
+            type="text"
+            placeholder="Filter by Country"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+          />
+          <SortingBarInput
+            type="text"
+            placeholder="Filter by City"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+          />
+          <SortingBarDropdownContainer $loc="SortingBarDropdownContainer">
+            <SortingBarDropdown
+              $loc="SortingBarDropdown"
+              value={currency}
+              onChange={(e) => setCurrency(e.target.value)}
+            >
+              <SortingBarDropdownItems value="">
+                Select Currency
               </SortingBarDropdownItems>
-            ))}
-          </SortingBarDropdown>
-          <SortingBarDropdown
-            value={priceRange}
-            onChange={(e) => setPriceRange(e.target.value)}
-          >
-            <SortingBarDropdownItems value="">
-              Filter by Price
-            </SortingBarDropdownItems>
-            <SortingBarDropdownItems value="0-500">
-              0-500
-            </SortingBarDropdownItems>
-            <SortingBarDropdownItems value="500-1000">
-              500-1000
-            </SortingBarDropdownItems>
-            <SortingBarDropdownItems value="1000-2000">
-              1000-2000
-            </SortingBarDropdownItems>
-            <SortingBarDropdownItems value="2000-3000">
-              2000-3000
-            </SortingBarDropdownItems>
-            <SortingBarDropdownItems value="3000-4000">
-              3000-4000
-            </SortingBarDropdownItems>
-            <SortingBarDropdownItems value="4000-5000">
-              4000-5000
-            </SortingBarDropdownItems>
-            <SortingBarDropdownItems value="5000+">
-              5000+
-            </SortingBarDropdownItems>
-          </SortingBarDropdown>
-        </SortingBarDropdownContainer>
-      </SortingBarContainer>
+              {currencies.map((currency, index) => (
+                <SortingBarDropdownItems key={index} value={currency}>
+                  {currency}
+                </SortingBarDropdownItems>
+              ))}
+            </SortingBarDropdown>
+            <SortingBarDropdown
+              value={priceRange}
+              onChange={(e) => setPriceRange(e.target.value)}
+            >
+              <SortingBarDropdownItems value="">
+                Filter by Price
+              </SortingBarDropdownItems>
+              <SortingBarDropdownItems value="0-500">
+                0-500
+              </SortingBarDropdownItems>
+              <SortingBarDropdownItems value="500-1000">
+                500-1000
+              </SortingBarDropdownItems>
+              <SortingBarDropdownItems value="1000-2000">
+                1000-2000
+              </SortingBarDropdownItems>
+              <SortingBarDropdownItems value="2000-3000">
+                2000-3000
+              </SortingBarDropdownItems>
+              <SortingBarDropdownItems value="3000-4000">
+                3000-4000
+              </SortingBarDropdownItems>
+              <SortingBarDropdownItems value="4000-5000">
+                4000-5000
+              </SortingBarDropdownItems>
+              <SortingBarDropdownItems value="5000+">
+                5000+
+              </SortingBarDropdownItems>
+            </SortingBarDropdown>
+          </SortingBarDropdownContainer>
+        </SortingBarContainer>
+      )}
+      
       <PackageContainer $loc="PackageContainer">
         {loading && <LoadingMessage>Loading...</LoadingMessage>}
         {error && (

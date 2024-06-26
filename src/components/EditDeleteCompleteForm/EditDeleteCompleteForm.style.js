@@ -11,7 +11,7 @@ export const StyledDatePicker = styled(DatePicker)`
   padding: 10px;
   border: none;
   border-bottom: 2px solid black;
-  background-color: ${PALE_YELLOW};
+  background-color: ${WHITE_NEUTRAL};
   position: relative;
   
   &:hover {
@@ -26,7 +26,7 @@ export const StyledDatePicker = styled(DatePicker)`
 
 export const GlobalStyles = createGlobalStyle`
   body {
-    background-color: ${WHITE_NEUTRAL};
+    background-color: #E0F7E9;
   }
 `;
 
@@ -65,11 +65,12 @@ export const EditInput = styled.input`
   padding: 10px 10px 10px 35px;
   border: none;
   border-bottom: 2px solid black;
-  background-color: ${PALE_YELLOW};
+  background-color: ${WHITE_NEUTRAL};
   position: relative;
 
   &:hover {
     border: 2px solid ${LIGHT_GREEN};
+    margin-top: -1.6px;
   }
 
   &:focus {
