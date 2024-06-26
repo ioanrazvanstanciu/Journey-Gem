@@ -1,5 +1,5 @@
 import useFetchPackages from "./../../hooks/useFetchPackage";
-import { PackageContainer , SortingBarContainer , SortingBarInput , SortingBarDropdownContainer , SortingBarDropdown , SortingBarDropdownItems , NoMatchMessage , ClearSortBarButton } from "./EditDelete.style";
+import { PackageContainer , SortingBarContainer , SortingBarInput , SortingBarDropdownContainer , SortingBarDropdown , SortingBarDropdownItems , NoMatchMessage , ClearSortBarButton, ComponentsContainer , ContainerShowHideSortbarButton , ShowHideSortbarButton } from "./EditDelete.style";
 import EditDeleteSingleCard from "./EditDeleteSingleCard/EditDeleteSingleCard";
 import { useState , useEffect } from "react";
 
@@ -11,6 +11,7 @@ function EditDelete() {
   const [priceRange, setPriceRange] = useState("");
   const [currency, setCurrency] = useState("");
   const [currencies, setCurrencies] = useState([]);
+  const [showSortBar , setShowSortBar] = useState(false);
 
   const handleClearSortingBar = () =>{
     setCountry("");
@@ -18,6 +19,9 @@ function EditDelete() {
     setPriceRange("");
     setCurrency("");
   }
+  const handleShowHideSortBar = ()=>{
+    showSortBar===false ? setShowSortBar(true) : setShowSortBar(false)
+   }
   useEffect(() => {
     if (packages) {
       const uniqueCurrencies = [...new Set(packages.map(pkg => pkg.moneda_sejur))];
@@ -56,8 +60,11 @@ function EditDelete() {
 
 
   return (
-    <>
-    <SortingBarContainer>
+    <ComponentsContainer>
+      <ContainerShowHideSortbarButton>
+        <ShowHideSortbarButton onClick={handleShowHideSortBar}>{showSortBar===true ? "Hide" : "Search package"}</ShowHideSortbarButton>
+      </ContainerShowHideSortbarButton>
+      {showSortBar && (<SortingBarContainer>
     <ClearSortBarButton onClick={handleClearSortingBar}>Clear</ClearSortBarButton>
     <SortingBarInput
       type="text"
@@ -95,7 +102,7 @@ function EditDelete() {
       <SortingBarDropdownItems value="5000+">5000+</SortingBarDropdownItems>
     </SortingBarDropdown>
     </SortingBarDropdownContainer>
-  </SortingBarContainer>
+  </SortingBarContainer>)}
     <PackageContainer loc="PackageContainer">
       {loading && <div>Loading...</div>}
       {error && <div>{error} Error on getting data, server is down.</div>}
@@ -105,7 +112,7 @@ function EditDelete() {
             <EditDeleteSingleCard key={my_package.tara} {...my_package} />
           ))}
     </PackageContainer>
-    </>
+    </ComponentsContainer>
   );
 }
 

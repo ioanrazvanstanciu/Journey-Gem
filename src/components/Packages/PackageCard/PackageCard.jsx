@@ -14,6 +14,7 @@ import {
   AnteteSosirePlecare,
   PretMoneda,
   PretMonedaValori,
+  ItsReservedDiv,
   ClickForReserveP ,
   ItsReservedP
 } from "./PackageCard.style";
@@ -80,7 +81,7 @@ function PackageCard({
             </ModTransport>
           </DetaliiGrupate>
         </DetaliiPrimaLinie>
-        <div>{itsReserved(este_rezervat)}</div>
+        <ItsReservedDiv>{itsReserved(este_rezervat)}</ItsReservedDiv>
       </PrimaLinie>
       <ADouaLinie>
         <SosirePlecare>

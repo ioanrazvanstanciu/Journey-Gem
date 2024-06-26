@@ -1,33 +1,85 @@
 import styled from "styled-components";
 import { WHITE_NEUTRAL, PALE_YELLOW, DARK_GREEN, LIGHT_GREEN} from "../../constants/color";
 
+export const ComponentsContainer = styled.div`
+display: flex;
+justify-content: center;
+margin: 200px 30px;
+gap: 25px;
+
+@media (max-width: 1400px) {
+    flex-direction: column;
+  }
+;
+`
+export const ContainerShowHideSortbarButton = styled.div`
+
+`;
+export const ShowHideSortbarButton = styled.button`
+   background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    &:hover{
+      background-color: #388E3C;
+      transform: scale(1.05);
+    }
+    &:active{
+      background-color: #2E7D32;
+    }
+`;
+ 
+export const LoadingMessage = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 20px;
+width: 100%;
+margin: 30px 0px;
+`
+export const ErrorMessage = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 20px;
+color: red;
+margin: 0 auto;
+width: 100%;
+margin: 30px 0px;
+`
+
 export const PackageContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
-  margin: 48px 90px;
-  padding: 64px;
+  flex-direction: column;
   height: 100%;
-  min-height: 100vh;
+  flex: 1 1 250px;
+  max-width: 100%;
+  min-width: 250px;
   gap: 16px;
-  flex-wrap: wrap;
   color: black;
   font-weight: 700;
 `;
 export const SortingBarContainer = styled.div`
   margin: 0 9px;
-  position: absolute;
-  left: 0;
-  top: 200px;
   display: flex;
+  flex-shrink: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 25px;
-  width: 25%;
+  width: 400px;
   height: 350px;
-  background-color: ${PALE_YELLOW};
+  background-color: ${LIGHT_GREEN};
   border-radius: 7px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  @media (max-width: 1400px) {
+    width: 60%;
+   margin: 0 auto ;
+  }
 `;
 
 export const SortingBarInput = styled.input`
@@ -67,21 +119,24 @@ export const SortingBarDropdownItems = styled.option`
   padding: 10px;
   margin-right: 10px;
 `;
-export const NoMatchMessage = styled.p`
-  font-size: 14px;
+export const NoMatchMessage = styled.div`
+  font-size: 20px;
   color: #e74c3c;
   margin-top: 10px;
+  width: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 export const ClearSortBarButton = styled.button`
   background-color: red ;
   color: ${WHITE_NEUTRAL};
   padding: 7px;
   width: 70px;
-  border: none;
+  border: 1px solid ${WHITE_NEUTRAL};
   cursor: pointer;
   border-radius: 9px;
   font-weight: 700;
-  border: 1px solid ${WHITE_NEUTRAL};
   transition: background 0.3s ease-in-out, color 0.3s ease-in-out, border 0.3s ease-in-out;
 
   &:hover {

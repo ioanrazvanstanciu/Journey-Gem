@@ -15,12 +15,7 @@ import {
   PretMoneda,
   PretMonedaValori,
   EditDeleteButton,
-  CardImgContainer,
-  CardInfoContainer,
-  CardImg,
-  Title,
-  Text,
-  UperText,
+ 
 } from "./EditDeleteSingleCard.style";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";

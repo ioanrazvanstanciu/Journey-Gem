@@ -11,7 +11,9 @@ import {
   ClearSortBarButton,
   ComponentsContainer,
   LoadingMessage,
-  ErrorMessage
+  ErrorMessage,
+  ContainerShowHideSortbarButton,
+  ShowHideSortbarButton
 } from "./Packages.style";
 import PackageCard from "./PackageCard/PackageCard";
 
@@ -23,6 +25,7 @@ function Packages() {
   const [priceRange, setPriceRange] = useState("");
   const [currency, setCurrency] = useState("");
   const [currencies, setCurrencies] = useState([]);
+  const [showSortBar , setShowSortBar] = useState(false);
 
   const handleClearSortingBar = () => {
     setCountry("");
@@ -30,6 +33,9 @@ function Packages() {
     setPriceRange("");
     setCurrency("");
   };
+  const handleShowHideSortBar = ()=>{
+   showSortBar===false ? setShowSortBar(true) : setShowSortBar(false)
+  }
   useEffect(() => {
     if (!localStorage.getItem("reloaded")) {
       localStorage.setItem("reloaded", "true");
@@ -85,7 +91,10 @@ function Packages() {
 
   return (
     <ComponentsContainer loc='ComponentsContainer'>
-      <SortingBarContainer loc='SortingBarContainer'>
+      <ContainerShowHideSortbarButton>
+        <ShowHideSortbarButton onClick={handleShowHideSortBar}>{showSortBar===true ? "Hide" : "Search package"}</ShowHideSortbarButton>
+      </ContainerShowHideSortbarButton>
+      {showSortBar && (<SortingBarContainer loc='SortingBarContainer'>
         <ClearSortBarButton onClick={handleClearSortingBar}>
           Clear
         </ClearSortBarButton>
@@ -146,6 +155,8 @@ function Packages() {
           </SortingBarDropdown>
         </SortingBarDropdownContainer>
       </SortingBarContainer>
+    )}
+      
       <PackageContainer loc="PackageContainer">
         {loading && <LoadingMessage>Loading...</LoadingMessage>}
         {error && <ErrorMessage>{error} Error on getting data, server is down.</ErrorMessage>}
