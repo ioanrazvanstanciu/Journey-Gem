@@ -7,7 +7,7 @@ import {
 
 function Dropdown({ isOpaque }) {
   return (
-    <DropdownContainer isOpaque={isOpaque}>
+    <DropdownContainer $isOpaque={isOpaque}>
       <LinkContainer>
         {routes.map((el, index) => (
           <LinkNav

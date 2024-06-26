@@ -14,7 +14,7 @@ import CustomAddUser from "./components/CustomAddUser/CustomAddUser";
 
 function App() {
   return (
-    <>
+    <div className="App">
       <Navbar />
       <Routes>
         <Route path="/home" element={<Home />} />
@@ -32,7 +32,7 @@ function App() {
         <Route path="/" element={<Home />} />
       </Routes>
       <Footer />
-    </>
+    </div>
   );
 }
 

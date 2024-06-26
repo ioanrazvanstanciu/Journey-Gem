@@ -13,7 +13,7 @@ import {
   LoadingMessage,
   ErrorMessage,
   ContainerShowHideSortbarButton,
-  ShowHideSortbarButton
+  ShowHideSortbarButton 
 } from "./Packages.style";
 import PackageCard from "./PackageCard/PackageCard";
 
@@ -178,7 +178,6 @@ function Packages() {
       </PackageContainer>
     </ComponentsContainer>
   );
-  
 }
 
 export default Packages;
