@@ -38,7 +38,7 @@ export const EditForm = ({ name, handleChange, type, value, error }) => {
 
   return (
     <>
-      <div style={{ position: "relative", width: "100%", left: "25%" }}>
+      <div style={{ position: "relative", width: "60%", left: "6%" }}>
         <EditInput
           placeholder=""
           defaultValue={value}
@@ -51,7 +51,7 @@ export const EditForm = ({ name, handleChange, type, value, error }) => {
         />
         <EditLabel
           isfocused={isFocused ? isFocused.toString() : undefined}
-          $hasvalue={value ? value : undefined}
+          hasvalue={value ? value : undefined}
         >
           {formatLabel(name)}
         </EditLabel>
@@ -69,14 +69,14 @@ export const EditForm = ({ name, handleChange, type, value, error }) => {
 export const EditFormDatePicker = ({ name, error, handleChange, selected }) => {
   return (
     <>
-      <div style={{ position: "relative", width: "100%", left: "25%" }}>
+      <div style={{ position: "relative", width: "60%", left: "6%" }}>
         <StyledDatePicker
           dateFormat={"dd.MM.yyyy"}
           placeholderText=""
           selected={selected}
           onChange={(date) => handleChange(date, name)}
         />
-        <EditLabel $hasvalue={selected ? selected : undefined}>
+        <EditLabel hasvalue={selected ? selected : undefined}>
           {formatLabel(name)}
         </EditLabel>
       </div>

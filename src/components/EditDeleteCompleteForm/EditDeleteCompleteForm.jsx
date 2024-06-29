@@ -5,11 +5,11 @@ import {
   EditContainer,
   DeletePackageButton,
   ButtonsContainer,
-  ModalDeleteContainer , 
-  ModalDeleteButton , 
-  ModalDeleteMessage , 
+  ModalDeleteContainer,
+  ModalDeleteButton,
+  ModalDeleteMessage,
   ModalDeleteCancel,
-  ModalOverlay
+  ModalOverlay,
 } from "./EditDeleteCompleteForm.style";
 import {
   EditForm,
@@ -234,7 +234,7 @@ const EditDeleteCompleteForm = () => {
         toast.error("Eroare la modificarea pachetului!");
       });
   };
-  
+
   const handleDeleteModal = () => {
     setShowDeleteModal(true);
   };
@@ -259,8 +259,7 @@ const EditDeleteCompleteForm = () => {
         console.error("A aparut o eroare:", error);
         toast.error("Eroare la stergerea pachetului!");
       });
-
-  }
+  };
   useEffect(() => {
     if (my_package) {
       const checkInDate = new Date(pachet_de_lucru.zi_check_in);
@@ -313,21 +312,27 @@ const EditDeleteCompleteForm = () => {
             );
           }
         })}
-            <ButtonsContainer>
-            <EditButton onClick={handleSubmit}>Modify package</EditButton>
-            <DeletePackageButton onClick={handleDeleteModal}>Delete Package</DeletePackageButton>
-            </ButtonsContainer>
-        
-            {showDeleteModal && (
-              <ModalOverlay>
+      <ButtonsContainer>
+        <EditButton onClick={handleSubmit}>Modify package</EditButton>
+        <DeletePackageButton onClick={handleDeleteModal}>
+          Delete package
+        </DeletePackageButton>
+      </ButtonsContainer>
+
+      {showDeleteModal && (
+        <ModalOverlay>
           <ModalDeleteContainer>
             <ModalDeleteMessage>
               Are you sure you want to delete this package?
             </ModalDeleteMessage>
-            <ModalDeleteButton onClick={handleDeletePackage}>Delete</ModalDeleteButton>
-            <ModalDeleteCancel onClick={() => setShowDeleteModal(false)}>Cancel</ModalDeleteCancel>
+            <ModalDeleteButton onClick={handleDeletePackage}>
+              Delete
+            </ModalDeleteButton>
+            <ModalDeleteCancel onClick={() => setShowDeleteModal(false)}>
+              Cancel
+            </ModalDeleteCancel>
           </ModalDeleteContainer>
-          </ModalOverlay>
+        </ModalOverlay>
       )}
       <ToastContainer />
     </EditContainer>

@@ -24,11 +24,10 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  cursor: pointer;
   text-decoration: none;
   border: 2px solid ${LIGHT_GREEN};
   @media (max-width: 750px) {
-   height: auto;
+    height: auto;
   }
 `;
 
@@ -40,9 +39,9 @@ export const PrimaLinie = styled.div`
   width: 100%;
 
   @media (max-width: 750px) {
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -51,8 +50,8 @@ export const ImageContainer = styled.div`
   width: 280px;
   border-radius: 10px;
   @media (max-width: 750px) {
-   width: 80%;
-   height: auto;
+    width: 80%;
+    height: auto;
   }
 `;
 
@@ -73,7 +72,7 @@ export const OrasSiTara = styled.div`
   font-size: 25px;
   font-weight: 600;
   display: flex;
-  flex-direction: row ; 
+  flex-direction: row;
   justify-content: space-between;
 `;
 
@@ -86,7 +85,6 @@ export const DetaliiGrupate = styled.div`
   font-size: 15px;
   font-weight: 600;
   margin-top: 4rem;
-
 `;
 
 export const ZileConcediu = styled.div`
@@ -126,7 +124,7 @@ export const ADouaLinie = styled.div`
   align-items: center;
   gap: 20px;
   @media (max-width: 750px) {
-   flex-direction: column;
+    flex-direction: column;
   }
 `;
 
@@ -139,7 +137,7 @@ export const SosirePlecare = styled.div`
   margin-top: 0.75rem;
   margin-left: 5.5rem;
   @media (max-width: 750px) {
-   margin: 20px 0;
+    margin: 20px 0;
   }
 `;
 

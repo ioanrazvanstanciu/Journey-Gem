@@ -14,6 +14,7 @@ import {
   AnteteSosirePlecare,
   PretMoneda,
   PretMonedaValori,
+  ReservedPageReservedText,
   CardImgContainer,
   CardInfoContainer,
   CardImg,
@@ -51,9 +52,9 @@ function ReservedCard({
               {oras}, {tara}
             </div>
             <div>
-              <p>
+              <ReservedPageReservedText>
                 <CheckCircleIcon /> Reserved!
-              </p>
+              </ReservedPageReservedText>
             </div>
           </OrasSiTara>
           <DetaliiGrupate>
