@@ -11,12 +11,12 @@ const Add = () => {
     tara: "",
     oras: "",
     imagine_pachet: "",
-    nr_zile_concediu: 0,
+    nr_zile_concediu: "",
     zi_check_in: null,
     zi_check_out: null,
-    nr_pers: 0,
+    nr_pers: "",
     mod_transport: "",
-    pret_sejur: 0,
+    pret_sejur: "",
     moneda_sejur: "",
   });
 

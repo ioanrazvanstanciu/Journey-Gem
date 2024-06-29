@@ -12,15 +12,30 @@ import {
 } from "/src/constants/color.js";
 
 export const ItsReservedDiv = styled.div`
-margin: 0 auto;
-`
+  margin: 0 auto;
+`;
 
 export const ClickForReserveP = styled.p`
-font-size: 20px;
-`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: underline;
+`;
+
 export const ItsReservedP = styled.p`
-font-size: 20px;
-`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: underline;
+`;
 
 export const Card = styled(Link)`
   background-color: ${WHITE_NEUTRAL};
@@ -43,7 +58,7 @@ export const Card = styled(Link)`
     color: ${WHITE_NEUTRAL};
   }
   @media (max-width: 750px) {
-   height: auto;
+    height: auto;
   }
 `;
 
@@ -55,9 +70,9 @@ export const PrimaLinie = styled.div`
   width: 100%;
 
   @media (max-width: 750px) {
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -66,8 +81,8 @@ export const ImageContainer = styled.div`
   width: 280px;
   border-radius: 10px;
   @media (max-width: 750px) {
-   width: 80%;
-   height: auto;
+    width: 80%;
+    height: auto;
   }
 `;
 
@@ -88,7 +103,7 @@ export const OrasSiTara = styled.div`
   font-size: 25px;
   font-weight: 600;
   display: flex;
-  flex-direction: row ; 
+  flex-direction: row;
   justify-content: space-between;
 `;
 
@@ -101,7 +116,6 @@ export const DetaliiGrupate = styled.div`
   font-size: 15px;
   font-weight: 600;
   margin-top: 4rem;
-
 `;
 
 export const ZileConcediu = styled.div`
@@ -140,7 +154,7 @@ export const ADouaLinie = styled.div`
   justify-content: space-between;
   align-items: center;
   @media (max-width: 750px) {
-   flex-direction: column;
+    flex-direction: column;
   }
 `;
 
@@ -153,7 +167,7 @@ export const SosirePlecare = styled.div`
   margin-top: 0.75rem;
   margin-left: 5.5rem;
   @media (max-width: 750px) {
-   margin: 20px 0;
+    margin: 20px 0;
   }
 `;
 

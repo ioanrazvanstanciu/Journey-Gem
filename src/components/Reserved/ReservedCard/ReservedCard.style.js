@@ -58,7 +58,7 @@ export const OrasSiTara = styled.div`
   font-size: 25px;
   font-weight: 600;
   display: flex;
-  flex-direction: row ; 
+  flex-direction: row;
   justify-content: space-between;
 `;
 
@@ -182,4 +182,15 @@ export const Text = styled.p`
 export const UperText = styled.span`
   text-transform: uppercase;
   text-decoration: solid;
+`;
+
+export const ReservedPageReservedText = styled.p`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: underline;
 `;

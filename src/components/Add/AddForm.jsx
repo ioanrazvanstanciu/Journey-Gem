@@ -38,7 +38,7 @@ export const AddForm = ({ name, handleChange, type, value, error }) => {
 
   return (
     <>
-      <div style={{ position: "relative", width: "100%", left: "25%" }}>
+      <div style={{ position: "relative", width: "60%", left: "6%" }}>
         <AddInput
           placeholder=""
           defaultValue={value}
@@ -51,7 +51,7 @@ export const AddForm = ({ name, handleChange, type, value, error }) => {
         />
         <AddLabel
           isfocused={isFocused ? isFocused.toString() : undefined}
-          $hasvalue={value ? value : undefined}
+          hasvalue={value ? value : undefined}
         >
           {formatLabel(name)}
         </AddLabel>
@@ -69,14 +69,14 @@ export const AddForm = ({ name, handleChange, type, value, error }) => {
 export const AddFormDatePicker = ({ name, error, handleChange, selected }) => {
   return (
     <>
-      <div style={{ position: "relative", width: "100%", left: "25%" }}>
+      <div style={{ position: "relative", width: "60%", left: "6%" }}>
         <StyledDatePicker
           dateFormat={"dd.MM.yyyy"}
           placeholderText=""
           selected={selected}
           onChange={(date) => handleChange(date, name)}
         />
-        <AddLabel $hasvalue={selected ? selected : undefined}>
+        <AddLabel hasvalue={selected ? selected : undefined}>
           {formatLabel(name)}
         </AddLabel>
       </div>

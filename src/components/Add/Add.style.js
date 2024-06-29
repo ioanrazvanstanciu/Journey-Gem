@@ -1,9 +1,17 @@
-import styled , {createGlobalStyle , css} from "styled-components";
-import { DARK_GREEN, LIGHT_GRAY, LIGHT_GREEN, PALE_YELLOW, WHITE_NEUTRAL } from "../../constants/color";
+import styled, { createGlobalStyle, css } from "styled-components";
+import {
+  WHITE_NEUTRAL,
+  DARK_GREEN,
+  LIGHT_GREEN,
+  DARK_GRAY,
+  LIGHT_GRAY,
+  BEIGE,
+  LIGHT_BLUE,
+  PALE_YELLOW,
+} from "/src/constants/color.js";
 import { ShieldExclamation } from "react-bootstrap-icons";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
 
 export const StyledDatePicker = styled(DatePicker)`
   height: 30px;
@@ -13,7 +21,7 @@ export const StyledDatePicker = styled(DatePicker)`
   border-bottom: 2px solid black;
   background-color: ${WHITE_NEUTRAL};
   position: relative;
-  
+
   &:hover {
     border: 2px solid ${LIGHT_GREEN};
   }
@@ -72,17 +80,17 @@ export const AddInput = styled.input`
     border: 2px solid ${LIGHT_GREEN};
     margin-top: -1.6px;
 
-  &:focus {
-    background-color: ${WHITE_NEUTRAL};
-    border: 2px solid ${DARK_GREEN};
-  }
+    &:focus {
+      background-color: ${WHITE_NEUTRAL};
+      border: 2px solid ${DARK_GREEN};
+    }
 
-  &:focus + ${AddLabel}, &:not(:placeholder-shown) + ${AddLabel} {
-    top: -15px;
-    font-size: 19px;
-    color: ${DARK_GREEN};
+    &:focus + ${AddLabel}, &:not(:placeholder-shown) + ${AddLabel} {
+      top: -15px;
+      font-size: 19px;
+      color: ${DARK_GREEN};
+    }
   }
-}
 `;
 
 export const AddButton = styled.button`

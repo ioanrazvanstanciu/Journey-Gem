@@ -7,6 +7,7 @@ import {
   PackageAllDetailsLinieDetaliu,
   PackageAllDetailsAntet,
   PackageAllDetailsValoare,
+  ReservedPageReservedText,
   ReserveButton,
 } from "./ReservedPage.style";
 import useFetchPackages from "../../hooks/useFetchPackage";
@@ -84,9 +85,9 @@ function ReservedPage() {
             </PackageAllDetailsLinieDetaliu>
           </PackageAllDetails>
           <div>
-            <p>
+            <ReservedPageReservedText>
               <CheckCircleIcon /> Reserved!
-            </p>
+            </ReservedPageReservedText>
           </div>
         </>
       )}

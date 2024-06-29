@@ -30,8 +30,8 @@ export const PackageDetailsImageContainer = styled.div`
 `;
 
 export const PackageDetailsImage = styled.img`
-  height: 8%;
-  width: 50%;
+  height: 300px;
+  width: 300px;
   border-radius: 10%;
 `;
 
@@ -77,4 +77,15 @@ export const ReserveButton = styled.button`
     background-color: ${DARK_GREEN};
     color: ${WHITE_NEUTRAL};
   }
+`;
+
+export const ReservedPageReservedText = styled.p`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: underline;
 `;

@@ -8,6 +8,7 @@ import {
   PackageAllDetailsAntet,
   PackageAllDetailsValoare,
   ReserveButton,
+  ReservedText,
 } from "./Package.style";
 import useFetchPackages from "../../hooks/useFetchPackage";
 import { ToastContainer, toast } from "react-toastify";
@@ -55,10 +56,10 @@ export const isThisSpecificPackageReserved = (pachetul_meu) => {
     );
   } else {
     return (
-      <p>
+      <ReservedText>
         <CheckCircleIcon />
         Reserved!
-      </p>
+      </ReservedText>
     );
   }
 };
