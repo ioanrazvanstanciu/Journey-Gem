@@ -53,7 +53,7 @@ function NavBar() {
   return (
     <NavbarContainer $isOpaque={isOpaque}>
       <ZonaDeLogo to={`/home`} onClick={() => setActiveLink("/home")}>
-        <Logo src="/src/assets/logo_app.png"></Logo>
+        <Logo src="https://cdn-icons-png.flaticon.com/512/1981/1981081.png"></Logo>
         <TitluAppText>
           <div>Journey</div>
           <div>Gem</div>
