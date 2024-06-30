@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const API_URL = "http://localhost:3001/pachete";
+const API_URL = "https://apipachete.onrender.com/pachete";
 
 const useFetchPackages = (id = "") => {
   const [packages, setPackages] = useState([]);

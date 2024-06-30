@@ -10,7 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Add = () => {
-  const [ziCheckIn, setZiCheckIn] = useState(new Date()); 
+  const [ziCheckIn, setZiCheckIn] = useState(new Date());
   const [ziCheckOut, setZiCheckOut] = useState(new Date());
   const [inputObject, setInputObject] = useState({
     tara: "",
@@ -179,7 +179,7 @@ const Add = () => {
       }
       return;
     }
-    fetch(`http://localhost:3001/pachete`, {
+    fetch(`https://apipachete.onrender.com/pachete`, {
       method: "POST",
       body: JSON.stringify({
         ...inputObject,
@@ -226,7 +226,15 @@ const Add = () => {
                   }
                   handleDateChange(date, el);
                 }}
-                error={error[el] || (el === "zi_check_in" && !ziCheckIn) || (el === "zi_check_out" && !ziCheckOut) ? `You must select a day of ${el === "zi_check_in" ? "check-in" : "check-out"}` : undefined}
+                error={
+                  error[el] ||
+                  (el === "zi_check_in" && !ziCheckIn) ||
+                  (el === "zi_check_out" && !ziCheckOut)
+                    ? `You must select a day of ${
+                        el === "zi_check_in" ? "check-in" : "check-out"
+                      }`
+                    : undefined
+                }
               />
             );
           } else {

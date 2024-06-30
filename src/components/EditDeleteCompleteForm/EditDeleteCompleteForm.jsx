@@ -10,7 +10,7 @@ import {
   ModalDeleteMessage,
   ModalDeleteCancel,
   ModalOverlay,
-  ComponentContainer
+  ComponentContainer,
 } from "./EditDeleteCompleteForm.style";
 import {
   EditForm,
@@ -83,7 +83,7 @@ const EditDeleteCompleteForm = () => {
     });
     setInputObject({ ...inputObject, [name]: formattedDate });
     handleError(formattedDate, name);
-  
+
     if (name === "zi_check_in") {
       setZiCheckIn(new Date(value));
     } else if (name === "zi_check_out") {
@@ -111,7 +111,7 @@ const EditDeleteCompleteForm = () => {
             ...error,
             [name]: "The city name must be longer than 3 characters",
           });
-           } else {
+        } else {
           setError({ ...error, [name]: undefined });
         }
         break;
@@ -129,8 +129,7 @@ const EditDeleteCompleteForm = () => {
         if (value <= 0) {
           setError({
             ...error,
-            [name]:
-              "The number of vacation days must be greater than 0",
+            [name]: "The number of vacation days must be greater than 0",
           });
         } else {
           setError({ ...error, [name]: undefined });
@@ -214,7 +213,7 @@ const EditDeleteCompleteForm = () => {
       }
       return;
     }
-    fetch(`http://localhost:3001/pachete/${id}`, {
+    fetch(`https://apipachete.onrender.com/pachete/${id}`, {
       method: "PUT",
       body: JSON.stringify({
         ...inputObject,
@@ -246,7 +245,7 @@ const EditDeleteCompleteForm = () => {
     setShowDeleteModal(true);
   };
   const handleDeletePackage = () => {
-    fetch(`http://localhost:3001/pachete/${id}`, {
+    fetch(`https://apipachete.onrender.com/pachete/${id}`, {
       method: "DELETE",
     })
       .then((response) => {
@@ -278,71 +277,79 @@ const EditDeleteCompleteForm = () => {
   }, [my_package]);
   return (
     <ComponentContainer>
-    <EditContainer>
-      <GlobalStyles />
-      {Object.keys(inputObject)
-        .filter((el) => el !== "id")
-        .map((el, index) => {
-          if (el === "zi_check_in" || el === "zi_check_out") {
-            return (
-              <EditFormDatePicker
-                key={index}
-                name={el}
-                selected={el === "zi_check_in" ? ziCheckIn : ziCheckOut}
-                handleChange={(date) => {
-                  if (el === "zi_check_in") {
-                    setZiCheckIn(date);
-                  } else {
-                    setZiCheckOut(date);
+      <EditContainer>
+        <GlobalStyles />
+        {Object.keys(inputObject)
+          .filter((el) => el !== "id")
+          .map((el, index) => {
+            if (el === "zi_check_in" || el === "zi_check_out") {
+              return (
+                <EditFormDatePicker
+                  key={index}
+                  name={el}
+                  selected={el === "zi_check_in" ? ziCheckIn : ziCheckOut}
+                  handleChange={(date) => {
+                    if (el === "zi_check_in") {
+                      setZiCheckIn(date);
+                    } else {
+                      setZiCheckOut(date);
+                    }
+                    handleDateChange(date, el);
+                  }}
+                  error={
+                    error[el] ||
+                    (el === "zi_check_in" && !ziCheckIn) ||
+                    (el === "zi_check_out" && !ziCheckOut)
+                      ? `You must select a day of ${
+                          el === "zi_check_in" ? "check-in" : "check-out"
+                        }`
+                      : undefined
                   }
-                  handleDateChange(date, el);
-                }}
-                error={error[el] || (el === "zi_check_in" && !ziCheckIn) || (el === "zi_check_out" && !ziCheckOut) ? `You must select a day of ${el === "zi_check_in" ? "check-in" : "check-out"}` : undefined}
-              />
-            );
-          } else {
-            return (
-              <EditForm
-                key={index}
-                name={el}
-                type={
-                  el === "nr_zile_concediu" ||
-                  el === "nr_pers" ||
-                  el === "pret_sejur"
-                    ? "number"
-                    : "text"
-                }
-                value={inputObject[el]}
-                handleChange={handleChange}
-                error={error[el]}
-              />
-            );
-          }
-        })}
-      <ButtonsContainer>
-        <EditButton onClick={handleSubmit}>Modify package</EditButton>
-        <DeletePackageButton onClick={handleDeleteModal}>
-          Delete package
-        </DeletePackageButton>
-      </ButtonsContainer>
+                />
+              );
+            } else {
+              return (
+                <EditForm
+                  key={index}
+                  name={el}
+                  type={
+                    el === "nr_zile_concediu" ||
+                    el === "nr_pers" ||
+                    el === "pret_sejur"
+                      ? "number"
+                      : "text"
+                  }
+                  value={inputObject[el]}
+                  handleChange={handleChange}
+                  error={error[el]}
+                />
+              );
+            }
+          })}
+        <ButtonsContainer>
+          <EditButton onClick={handleSubmit}>Modify package</EditButton>
+          <DeletePackageButton onClick={handleDeleteModal}>
+            Delete package
+          </DeletePackageButton>
+        </ButtonsContainer>
 
-      {showDeleteModal && (
-        <ModalOverlay>
-          <ModalDeleteContainer>
-            <ModalDeleteMessage>
-              Are you sure you want to delete this package?
-            </ModalDeleteMessage>
-            <ModalDeleteButton onClick={handleDeletePackage}>
-              Delete
-            </ModalDeleteButton>
-            <ModalDeleteCancel onClick={() => setShowDeleteModal(false)}>
-              Cancel
-            </ModalDeleteCancel>
-          </ModalDeleteContainer>
-        </ModalOverlay>
-      )}
-      <ToastContainer />
-    </EditContainer>
+        {showDeleteModal && (
+          <ModalOverlay>
+            <ModalDeleteContainer>
+              <ModalDeleteMessage>
+                Are you sure you want to delete this package?
+              </ModalDeleteMessage>
+              <ModalDeleteButton onClick={handleDeletePackage}>
+                Delete
+              </ModalDeleteButton>
+              <ModalDeleteCancel onClick={() => setShowDeleteModal(false)}>
+                Cancel
+              </ModalDeleteCancel>
+            </ModalDeleteContainer>
+          </ModalOverlay>
+        )}
+        <ToastContainer />
+      </EditContainer>
     </ComponentContainer>
   );
 };
