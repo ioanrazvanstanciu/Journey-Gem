@@ -125,7 +125,10 @@ const CustomAddUser = () => {
     "Saudi Arabia": ["Riyadh", "Jeddah", "Mecca", "Medina", "Dammam"],
     Egypt: ["Cairo", "Alexandria", "Giza", "Shubra El Kheima", "Port Said"],
     Indonesia: ["Jakarta", "Surabaya", "Bandung", "Medan", "Semarang"],
-    Nigeria: ["Lagos", "Kano", "Ibadan", "Abuja", "Port Harcourt"]
+    Nigeria: ["Lagos", "Kano", "Ibadan", "Abuja", "Port Harcourt"],
+    Sweden: ["Stockholm", "Gothenburg", "Malmö", "Uppsala", "Västerås"],
+    Netherlands: ["Amsterdam", "Rotterdam", "The Hague", "Utrecht", "Eindhoven"],
+    Thailand: ["Bangkok", "Chiang Mai", "Phuket", "Pattaya", "Hat Yai"]
   };
   
   const tari_indicativ = {
@@ -151,7 +154,10 @@ const CustomAddUser = () => {
     "Saudi Arabia": "SA",
     Egypt: "EG",
     Indonesia: "ID",
-    Nigeria: "NG"
+    Nigeria: "NG",
+    Sweden: "SE",
+    Netherlands: "NL",
+    Thailand: "TH"
   };
 
   const [selectedCountry, setSelectedCountry] = useState(null);
