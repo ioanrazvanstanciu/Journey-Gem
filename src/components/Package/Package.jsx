@@ -31,7 +31,7 @@ export const handleReservePackage = (pachetul_meu) => {
     .then(async (response) => {
       if (response.ok) {
         await response.json();
-        toast("Ai rezervat cu succes pachetul dorit!", {
+        toast("You have successfully booked the desired package!", {
           autoClose: 2500,
           onClose: () => {
             window.location.href = "/reserved-packages";
@@ -42,8 +42,8 @@ export const handleReservePackage = (pachetul_meu) => {
       }
     })
     .catch((error) => {
-      console.error("A aparut o eroare:", error);
-      toast.error("Eroare la rezervarea pachetului!");
+      console.error("An error occurred:", error);
+      toast.error("Error when booking the package!");
     });
 };
 
@@ -80,57 +80,57 @@ function Package() {
           </PackageDetailsImageContainer>
           <PackageAllDetails>
             <PackageAllDetailsLinieDetaliu>
-              <PackageAllDetailsAntet>Tara: </PackageAllDetailsAntet>{" "}
+              <PackageAllDetailsAntet>Country: </PackageAllDetailsAntet>{" "}
               <PackageAllDetailsValoare>
                 {my_package.tara}
               </PackageAllDetailsValoare>
             </PackageAllDetailsLinieDetaliu>
             <PackageAllDetailsLinieDetaliu>
-              <PackageAllDetailsAntet>Oras: </PackageAllDetailsAntet>{" "}
+              <PackageAllDetailsAntet>City: </PackageAllDetailsAntet>{" "}
               <PackageAllDetailsValoare>
                 {my_package.oras}
               </PackageAllDetailsValoare>
             </PackageAllDetailsLinieDetaliu>
             <PackageAllDetailsLinieDetaliu>
               <PackageAllDetailsAntet>
-                Numar zile concediu:{" "}
+                Number of vacation days:{" "}
               </PackageAllDetailsAntet>
               <PackageAllDetailsValoare>
                 {my_package.nr_zile_concediu}
               </PackageAllDetailsValoare>
             </PackageAllDetailsLinieDetaliu>
             <PackageAllDetailsLinieDetaliu>
-              <PackageAllDetailsAntet>Zi check in: </PackageAllDetailsAntet>
+              <PackageAllDetailsAntet>Day check in: </PackageAllDetailsAntet>
               <PackageAllDetailsValoare>
                 {my_package.zi_check_in}
               </PackageAllDetailsValoare>
             </PackageAllDetailsLinieDetaliu>
             <PackageAllDetailsLinieDetaliu>
-              <PackageAllDetailsAntet>Zi check out: </PackageAllDetailsAntet>
+              <PackageAllDetailsAntet>Day check out: </PackageAllDetailsAntet>
               <PackageAllDetailsValoare>
                 {my_package.zi_check_out}
               </PackageAllDetailsValoare>
             </PackageAllDetailsLinieDetaliu>
             <PackageAllDetailsLinieDetaliu>
-              <PackageAllDetailsAntet>Numar persoane: </PackageAllDetailsAntet>
+              <PackageAllDetailsAntet>Number of people: </PackageAllDetailsAntet>
               <PackageAllDetailsValoare>
                 {my_package.nr_pers}
               </PackageAllDetailsValoare>
             </PackageAllDetailsLinieDetaliu>
             <PackageAllDetailsLinieDetaliu>
-              <PackageAllDetailsAntet>Mod transport: </PackageAllDetailsAntet>
+              <PackageAllDetailsAntet>Transport mode: </PackageAllDetailsAntet>
               <PackageAllDetailsValoare>
                 {my_package.mod_transport}
               </PackageAllDetailsValoare>
             </PackageAllDetailsLinieDetaliu>
             <PackageAllDetailsLinieDetaliu>
-              <PackageAllDetailsAntet>Pret sejur: </PackageAllDetailsAntet>
+              <PackageAllDetailsAntet>Stay price: </PackageAllDetailsAntet>
               <PackageAllDetailsValoare>
                 {my_package.pret_sejur}
               </PackageAllDetailsValoare>
             </PackageAllDetailsLinieDetaliu>
             <PackageAllDetailsLinieDetaliu>
-              <PackageAllDetailsAntet>Moneda sejur: </PackageAllDetailsAntet>
+              <PackageAllDetailsAntet>Stay currency: </PackageAllDetailsAntet>
               <PackageAllDetailsValoare>
                 {my_package.moneda_sejur}
               </PackageAllDetailsValoare>

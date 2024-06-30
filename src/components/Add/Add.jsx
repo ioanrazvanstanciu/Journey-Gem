@@ -1,11 +1,16 @@
-import { useState } from "react";
-import { AddContainer, AddButton, GlobalStyles } from "./Add.style";
+import React, { useState } from "react";
+import {
+  AddContainer,
+  AddButton,
+  GlobalStyles,
+  ComponentContainer,
+} from "./Add.style";
 import { AddForm, AddFormDatePicker } from "./AddForm";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Add = () => {
-  const [ziCheckIn, setZiCheckIn] = useState(new Date());
+  const [ziCheckIn, setZiCheckIn] = useState(new Date()); 
   const [ziCheckOut, setZiCheckOut] = useState(new Date());
   const [inputObject, setInputObject] = useState({
     tara: "",
@@ -56,10 +61,10 @@ const Add = () => {
         if (value.length < 3) {
           setError({
             ...error,
-            [name]: "Numele tarii trebuie sa fie mai lung de 3 caractere",
+            [name]: "The country name must be longer than 3 characters",
           });
-        } else if (value === "Title") {
-          setError({ ...error, [name]: "titlu nepotrivit" });
+        } else if (value === "tara") {
+          setError({ ...error, [name]: "The country name is incorrect" });
         } else {
           setError({ ...error, [name]: undefined });
         }
@@ -68,7 +73,7 @@ const Add = () => {
         if (value.length < 3) {
           setError({
             ...error,
-            [name]: "Numele orașului trebuie să fie mai lung de 3 caractere",
+            [name]: "The city name must be longer than 3 characters",
           });
         } else {
           setError({ ...error, [name]: undefined });
@@ -78,7 +83,7 @@ const Add = () => {
         if (!value) {
           setError({
             ...error,
-            [name]: "Trebuie să încărcați o imagine",
+            [name]: "You must upload an image",
           });
         } else {
           setError({ ...error, [name]: undefined });
@@ -88,8 +93,7 @@ const Add = () => {
         if (value <= 0) {
           setError({
             ...error,
-            [name]:
-              "Numărul de zile de concediu trebuie să fie mai mare decât 0",
+            [name]: "The number of vacation days must be greater than 0",
           });
         } else {
           setError({ ...error, [name]: undefined });
@@ -100,7 +104,7 @@ const Add = () => {
         if (!value) {
           setError({
             ...error,
-            [name]: `Trebuie să selectați o zi de ${
+            [name]: `You must select a day of ${
               name === "zi_check_in" ? "check-in" : "check-out"
             }`,
           });
@@ -112,7 +116,7 @@ const Add = () => {
         if (value <= 0) {
           setError({
             ...error,
-            [name]: "Numărul de persoane trebuie să fie mai mare decât 0",
+            [name]: "The number of people must be greater than 0",
           });
         } else {
           setError({ ...error, [name]: undefined });
@@ -122,7 +126,7 @@ const Add = () => {
         if (!value) {
           setError({
             ...error,
-            [name]: "Trebuie să precizati un mod de transport",
+            [name]: "You must specify a mode of transport",
           });
         } else {
           setError({ ...error, [name]: undefined });
@@ -132,7 +136,7 @@ const Add = () => {
         if (value <= 0) {
           setError({
             ...error,
-            [name]: "Prețul sejurului trebuie să fie mai mare decât 0",
+            [name]: "The price of the stay must be greater than 0",
           });
         } else {
           setError({ ...error, [name]: undefined });
@@ -142,7 +146,7 @@ const Add = () => {
         if (!value) {
           setError({
             ...error,
-            [name]: "Trebuie să selectați o monedă pentru sejur",
+            [name]: "You must select a currency for your stay",
           });
         } else {
           setError({ ...error, [name]: undefined });
@@ -152,6 +156,7 @@ const Add = () => {
         break;
     }
   };
+
   const hasErrors = (errors) => {
     const hasValidationErrors = Object.values(errors).some(
       (error) => error !== undefined
@@ -166,11 +171,11 @@ const Add = () => {
     if (hasErrors(error)) {
       if (Object.values(error).some((error) => error !== undefined)) {
         toast.error(
-          "Nu poți trimite formularul până când toate erorile sunt rezolvate!",
+          "You cannot submit the form until all errors are resolved!",
           { autoClose: 2500 }
         );
       } else {
-        toast.error("Toate câmpurile trebuie completate!", { autoClose: 2500 });
+        toast.error("All fields must be filled in!", { autoClose: 2500 });
       }
       return;
     }
@@ -186,7 +191,7 @@ const Add = () => {
     })
       .then((response) => {
         if (response.ok) {
-          toast("Pachetul tau tocmai a fost adaugat!", {
+          toast("Your package has just been added!", {
             autoClose: 2500,
             onClose: () => {
               window.location.href = "/all-packages";
@@ -197,54 +202,56 @@ const Add = () => {
         }
       })
       .catch((error) => {
-        console.error("A aparut o eroare:", error);
-        toast.error("Eroare la adaugarea pachetului!");
+        console.error("An error occurred:", error);
+        toast.error("Error adding the package!");
       });
   };
 
   return (
-    <AddContainer>
-      <GlobalStyles />
-      {Object.keys(inputObject).map((el, index) => {
-        if (el === "zi_check_in" || el === "zi_check_out") {
-          return (
-            <AddFormDatePicker
-              key={index}
-              name={el}
-              selected={el === "zi_check_in" ? ziCheckIn : ziCheckOut}
-              handleChange={(date) => {
-                if (el === "zi_check_in") {
-                  setZiCheckIn(date);
-                } else {
-                  setZiCheckOut(date);
+    <ComponentContainer>
+      <AddContainer>
+        <GlobalStyles />
+        {Object.keys(inputObject).map((el, index) => {
+          if (el === "zi_check_in" || el === "zi_check_out") {
+            return (
+              <AddFormDatePicker
+                key={index}
+                name={el}
+                selected={el === "zi_check_in" ? ziCheckIn : ziCheckOut}
+                handleChange={(date) => {
+                  if (el === "zi_check_in") {
+                    setZiCheckIn(date);
+                  } else {
+                    setZiCheckOut(date);
+                  }
+                  handleDateChange(date, el);
+                }}
+                error={error[el] || (el === "zi_check_in" && !ziCheckIn) || (el === "zi_check_out" && !ziCheckOut) ? `You must select a day of ${el === "zi_check_in" ? "check-in" : "check-out"}` : undefined}
+              />
+            );
+          } else {
+            return (
+              <AddForm
+                key={index}
+                name={el}
+                type={
+                  el === "nr_zile_concediu" ||
+                  el === "nr_pers" ||
+                  el === "pret_sejur"
+                    ? "number"
+                    : "text"
                 }
-                handleDateChange(date, el);
-              }}
-              error={error[el]}
-            />
-          );
-        } else {
-          return (
-            <AddForm
-              key={index}
-              name={el}
-              type={
-                el === "nr_zile_concediu" ||
-                el === "nr_pers" ||
-                el === "pret_sejur"
-                  ? "number"
-                  : "text"
-              }
-              value={inputObject[el]}
-              handleChange={handleChange}
-              error={error[el]}
-            />
-          );
-        }
-      })}
-      <AddButton onClick={handleSubmit}>Submit</AddButton>
-      <ToastContainer />
-    </AddContainer>
+                value={inputObject[el]}
+                handleChange={handleChange}
+                error={error[el]}
+              />
+            );
+          }
+        })}
+        <AddButton onClick={handleSubmit}>Submit</AddButton>
+        <ToastContainer />
+      </AddContainer>
+    </ComponentContainer>
   );
 };
 

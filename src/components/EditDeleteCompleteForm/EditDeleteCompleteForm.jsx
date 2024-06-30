@@ -10,6 +10,7 @@ import {
   ModalDeleteMessage,
   ModalDeleteCancel,
   ModalOverlay,
+  ComponentContainer
 } from "./EditDeleteCompleteForm.style";
 import {
   EditForm,
@@ -82,6 +83,12 @@ const EditDeleteCompleteForm = () => {
     });
     setInputObject({ ...inputObject, [name]: formattedDate });
     handleError(formattedDate, name);
+  
+    if (name === "zi_check_in") {
+      setZiCheckIn(new Date(value));
+    } else if (name === "zi_check_out") {
+      setZiCheckOut(new Date(value));
+    }
   };
 
   const handleError = (value, name) => {
@@ -90,10 +97,10 @@ const EditDeleteCompleteForm = () => {
         if (value.length < 3) {
           setError({
             ...error,
-            [name]: "Numele tarii trebuie sa fie mai lung de 3 caractere",
+            [name]: "The country name must be longer than 3 characters",
           });
-        } else if (value === "Title") {
-          setError({ ...error, [name]: "titlu nepotrivit" });
+        } else if (value === "tara") {
+          setError({ ...error, [name]: "The country name is incorrect" });
         } else {
           setError({ ...error, [name]: undefined });
         }
@@ -102,9 +109,9 @@ const EditDeleteCompleteForm = () => {
         if (value.length < 3) {
           setError({
             ...error,
-            [name]: "Numele orașului trebuie să fie mai lung de 3 caractere",
+            [name]: "The city name must be longer than 3 characters",
           });
-        } else {
+           } else {
           setError({ ...error, [name]: undefined });
         }
         break;
@@ -112,7 +119,7 @@ const EditDeleteCompleteForm = () => {
         if (!value) {
           setError({
             ...error,
-            [name]: "Trebuie să încărcați o imagine",
+            [name]: "You must upload an image",
           });
         } else {
           setError({ ...error, [name]: undefined });
@@ -123,7 +130,7 @@ const EditDeleteCompleteForm = () => {
           setError({
             ...error,
             [name]:
-              "Numărul de zile de concediu trebuie să fie mai mare decât 0",
+              "The number of vacation days must be greater than 0",
           });
         } else {
           setError({ ...error, [name]: undefined });
@@ -134,7 +141,7 @@ const EditDeleteCompleteForm = () => {
         if (!value) {
           setError({
             ...error,
-            [name]: `Trebuie să selectați o zi de ${
+            [name]: `You must select a day of ${
               name === "zi_check_in" ? "check-in" : "check-out"
             }`,
           });
@@ -146,7 +153,7 @@ const EditDeleteCompleteForm = () => {
         if (value <= 0) {
           setError({
             ...error,
-            [name]: "Numărul de persoane trebuie să fie mai mare decât 0",
+            [name]: "The number of people must be greater than 0",
           });
         } else {
           setError({ ...error, [name]: undefined });
@@ -156,7 +163,7 @@ const EditDeleteCompleteForm = () => {
         if (!value) {
           setError({
             ...error,
-            [name]: "Trebuie să precizati un mod de transport",
+            [name]: "You must specify a mode of transport",
           });
         } else {
           setError({ ...error, [name]: undefined });
@@ -166,7 +173,7 @@ const EditDeleteCompleteForm = () => {
         if (value <= 0) {
           setError({
             ...error,
-            [name]: "Prețul sejurului trebuie să fie mai mare decât 0",
+            [name]: "The price of the stay must be greater than 0",
           });
         } else {
           setError({ ...error, [name]: undefined });
@@ -176,7 +183,7 @@ const EditDeleteCompleteForm = () => {
         if (!value) {
           setError({
             ...error,
-            [name]: "Trebuie să selectați o monedă pentru sejur",
+            [name]: "You must select a currency for your stay",
           });
         } else {
           setError({ ...error, [name]: undefined });
@@ -199,11 +206,11 @@ const EditDeleteCompleteForm = () => {
     if (hasErrors(error)) {
       if (Object.values(error).some((error) => error !== undefined)) {
         toast.error(
-          "Nu poți trimite formularul până când toate erorile sunt rezolvate!",
+          "You cannot submit the form until all errors are resolved!",
           { autoClose: 2500 }
         );
       } else {
-        toast.error("Toate câmpurile trebuie completate!", { autoClose: 2500 });
+        toast.error("All fields must be filled in!", { autoClose: 2500 });
       }
       return;
     }
@@ -219,7 +226,7 @@ const EditDeleteCompleteForm = () => {
     })
       .then((response) => {
         if (response.ok) {
-          toast("Pachetul tau tocmai a fost modificat!", {
+          toast("Your package has just been modified!", {
             autoClose: 2500,
             onClose: () => {
               window.location.href = "/all-packages";
@@ -230,8 +237,8 @@ const EditDeleteCompleteForm = () => {
         }
       })
       .catch((error) => {
-        console.error("A aparut o eroare:", error);
-        toast.error("Eroare la modificarea pachetului!");
+        console.error("An error occurred:", error);
+        toast.error("Error modifying the package!");
       });
   };
 
@@ -244,7 +251,7 @@ const EditDeleteCompleteForm = () => {
     })
       .then((response) => {
         if (response.ok) {
-          toast("Pachetul tau tocmai a fost sters!", {
+          toast("Your package has just been deleted!", {
             autoClose: 2500,
             onClose: () => {
               window.location.href = "/all-packages";
@@ -256,8 +263,8 @@ const EditDeleteCompleteForm = () => {
         }
       })
       .catch((error) => {
-        console.error("A aparut o eroare:", error);
-        toast.error("Eroare la stergerea pachetului!");
+        console.error("An error occurred:", error);
+        toast.error("Error deleting package!");
       });
   };
   useEffect(() => {
@@ -265,12 +272,12 @@ const EditDeleteCompleteForm = () => {
       const checkInDate = new Date(pachet_de_lucru.zi_check_in);
       const checkOutDate = new Date(pachet_de_lucru.zi_check_out);
       setInputObject({ ...pachet_de_lucru });
-      setZiCheckIn(isNaN(checkInDate) ? null : checkInDate);
-      setZiCheckOut(isNaN(checkOutDate) ? null : checkOutDate);
+      setZiCheckIn(checkInDate);
+      setZiCheckOut(checkOutDate);
     }
   }, [my_package]);
-
   return (
+    <ComponentContainer>
     <EditContainer>
       <GlobalStyles />
       {Object.keys(inputObject)
@@ -290,7 +297,7 @@ const EditDeleteCompleteForm = () => {
                   }
                   handleDateChange(date, el);
                 }}
-                error={error[el]}
+                error={error[el] || (el === "zi_check_in" && !ziCheckIn) || (el === "zi_check_out" && !ziCheckOut) ? `You must select a day of ${el === "zi_check_in" ? "check-in" : "check-out"}` : undefined}
               />
             );
           } else {
@@ -336,6 +343,7 @@ const EditDeleteCompleteForm = () => {
       )}
       <ToastContainer />
     </EditContainer>
+    </ComponentContainer>
   );
 };
 

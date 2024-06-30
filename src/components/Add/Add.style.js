@@ -24,11 +24,13 @@ export const StyledDatePicker = styled(DatePicker)`
 
   &:hover {
     border: 2px solid ${LIGHT_GREEN};
+    margin-top: -1.6px;
   }
 
   &:focus-within {
     background-color: ${WHITE_NEUTRAL};
     border: 2px solid ${DARK_GREEN};
+    margin-top: -1.6px;
   }
 `;
 
@@ -37,11 +39,15 @@ export const GlobalStyles = createGlobalStyle`
     background-color: #E0F7E9;
   }
 `;
-
+export const ComponentContainer = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+`
 export const AddContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 70%;
   align-items: center;
   justify-content: center;
   margin-top: 120px;
@@ -83,6 +89,7 @@ export const AddInput = styled.input`
     &:focus {
       background-color: ${WHITE_NEUTRAL};
       border: 2px solid ${DARK_GREEN};
+      margin-top: -1.6px;
     }
 
     &:focus + ${AddLabel}, &:not(:placeholder-shown) + ${AddLabel} {
