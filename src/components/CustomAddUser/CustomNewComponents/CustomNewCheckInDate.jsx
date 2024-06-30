@@ -24,13 +24,13 @@ export default function CustomNewCheckInDate({ ziCheckIn, setZiCheckIn }) {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={["DateCalendar", "DateCalendar"]}>
-        <DemoItem label="Introduceti ziua de check in:">
+        <DemoItem label="Enter the check-in day:">
           <DateCalendar
             value={dayjs(ziCheckIn, "DD.MM.YYYY")}
             onChange={handleDateChange}
           />
         </DemoItem>
-        <DemoItem label="Data aleasa pentru check in:">
+        <DemoItem label="Date chosen for check in:">
           <TextField
             value={ziCheckIn}
             onChange={(event) =>

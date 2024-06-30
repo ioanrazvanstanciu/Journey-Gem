@@ -30,9 +30,10 @@ export const PackageDetailsImageContainer = styled.div`
 `;
 
 export const PackageDetailsImage = styled.img`
-  height: auto;
-  width: 600px;
+   height: auto;
+  width: 100%;
   border-radius: 10%;
+  object-fit: contain; 
 `;
 
 export const PackageAllDetails = styled.div`

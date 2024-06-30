@@ -24,13 +24,13 @@ export default function CustomNewCheckOutDate({ ziCheckOut, setZiCheckOut }) {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={["DateCalendar", "DateCalendar"]}>
-        <DemoItem label="Introduceti ziua de check out:">
+        <DemoItem label="Enter the day of check out:">
           <DateCalendar
             value={dayjs(ziCheckOut, "DD.MM.YYYY")}
             onChange={handleDateChange}
           />
         </DemoItem>
-        <DemoItem label="Data aleasa pentru check out:">
+        <DemoItem label="Date chosen for check out:">
           <TextField
             value={ziCheckOut}
             onChange={(event) =>
