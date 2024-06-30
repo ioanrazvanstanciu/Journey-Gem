@@ -9,18 +9,23 @@ import {
 
 const formatLabel = (str) => {
   const customMappings = {
-    nr: "Numar",
-    zile: "Zile",
-    pers: "Persoane",
-    pret: "Preț",
-    sejur: "Sejur",
-    moneda: "Moneda",
-    imagine: "Imagine",
-    mod: "Mod",
+    tara: "Country" ,
+    oras: "City",
+    pachet: "Resort",
+    concediu: "Vacation",
+    nr: "Number",
+    zile: "Days",
+    pers: "People",
+    pret: "Price",
+    sejur: "Resort",
+    moneda: "Currency",
+    imagine: "Image",
+    mod: "Mod of",
     transport: "Transport",
     check: "Check",
     in: "In",
     out: "Out",
+    zi: 'Day'
   };
 
   return str

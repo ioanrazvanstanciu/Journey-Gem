@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import {
   WHITE_NEUTRAL,
-  PALE_YELLOW,
   DARK_GREEN,
   LIGHT_GREEN,
 } from "../../constants/color";

@@ -69,11 +69,11 @@ function PackageCard({
           <DetaliiGrupate>
             <ZileConcediu>
               <CalendarMonthIcon />
-              {nr_zile_concediu} days
+              {nr_zile_concediu} Days
             </ZileConcediu>
             <NrPers>
               <PeopleAltOutlinedIcon />
-              {nr_pers} pers
+              {nr_pers} People
             </NrPers>
             <ModTransport>
               <AirlineStopsRoundedIcon />

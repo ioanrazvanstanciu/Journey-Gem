@@ -14,13 +14,8 @@ import {
   AnteteSosirePlecare,
   PretMoneda,
   PretMonedaValori,
-  ReservedPageReservedText,
-  CardImgContainer,
-  CardInfoContainer,
-  CardImg,
-  Title,
-  Text,
-  UperText,
+  ItsReservedP,
+  ItsReservedDiv
 } from "./ReservedCard.style";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
@@ -51,20 +46,15 @@ function ReservedCard({
             <div>
               {oras}, {tara}
             </div>
-            <div>
-              <ReservedPageReservedText>
-                <CheckCircleIcon /> Reserved!
-              </ReservedPageReservedText>
-            </div>
           </OrasSiTara>
           <DetaliiGrupate>
             <ZileConcediu>
               <CalendarMonthIcon />
-              {nr_zile_concediu} days
+              {nr_zile_concediu} Days
             </ZileConcediu>
             <NrPers>
               <PeopleAltOutlinedIcon />
-              {nr_pers} pers
+              {nr_pers} People
             </NrPers>
             <ModTransport>
               <AirlineStopsRoundedIcon />
@@ -72,6 +62,9 @@ function ReservedCard({
             </ModTransport>
           </DetaliiGrupate>
         </DetaliiPrimaLinie>
+        <ItsReservedDiv>
+               <ItsReservedP><CheckCircleIcon />Reserved!</ItsReservedP>
+            </ItsReservedDiv>
       </PrimaLinie>
       <ADouaLinie>
         <SosirePlecare>
