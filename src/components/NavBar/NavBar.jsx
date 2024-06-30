@@ -53,7 +53,7 @@ function NavBar() {
   return (
     <NavbarContainer $isOpaque={isOpaque}>
       <ZonaDeLogo to={`/home`} onClick={() => setActiveLink("/home")}>
-        <Logo src="src\assets\logo_app.png"></Logo>
+        <Logo src="/src/assets/logo_app.png"></Logo>
         <TitluAppText>
           <div>Journey</div>
           <div>Gem</div>
