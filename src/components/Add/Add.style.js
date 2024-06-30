@@ -47,7 +47,7 @@ align-items: center;
 export const AddContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 100%;
   align-items: center;
   justify-content: center;
   margin-top: 120px;

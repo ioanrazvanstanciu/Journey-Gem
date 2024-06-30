@@ -234,12 +234,12 @@ const CustomAddUser = () => {
           textDecoration: "underline",
         }}
       >
-        Completati pas cu pas campurile de mai jos
+        Let's customize your own package! Complete the fields below step by step
       </div>
       {/* TARA */}
       <div>
         <label htmlFor="country-select">
-          Selectati tara pentru pachetul dorit:
+        Select the country for the desired package:
         </label>
         <Select
           id="country-select"
@@ -255,7 +255,7 @@ const CustomAddUser = () => {
       {/* ORAS */}
       {selectedCountry && (
         <div>
-          <label htmlFor="city-select">Selectati orasul dorit:</label>
+          <label htmlFor="city-select">Select the desired city:</label>
           <Select
             id="city-select"
             value={selectedCity}
@@ -272,7 +272,7 @@ const CustomAddUser = () => {
         <div>
           <PentruPozaAntete>
             <label htmlFor="image-url">
-              Introduceti linkul pentru poza pachetului dorit:
+            Enter the link for the picture of the desired package:
             </label>
             <InputElement
               value={imageLink}
@@ -284,12 +284,12 @@ const CustomAddUser = () => {
             <SvgButton onClick={handleToggleImage}>
               {trebuieAfisataPoza === 1 && (
                 <div style={{ textAlign: "center" }}>
-                  Afisati imaginea aleasa
+                 Display the chosen image
                 </div>
               )}
               {trebuieAfisataPoza === 0 && (
                 <div style={{ textAlign: "center" }}>
-                  Ascundeti imaginea aleasa
+                 Hide the selected image
                 </div>
               )}
             </SvgButton>
@@ -298,7 +298,7 @@ const CustomAddUser = () => {
             <StilPentruPozaLink>
               <CustomPackageImage
                 src={imageUrl}
-                alt="Nu s-a introdus corect poza"
+                alt="Incorrect image url"
               />
             </StilPentruPozaLink>
           )}
@@ -313,7 +313,7 @@ const CustomAddUser = () => {
               marginBottom: "1rem",
             }}
           >
-            Introduceti numarul de zile de concediu:
+            How many days do you plan to stay?
           </div>
           <div>
             <CustomNewNumberInput
@@ -360,7 +360,7 @@ const CustomAddUser = () => {
               marginBottom: "1rem",
             }}
           >
-            Introduceti numarul de persoane:
+           Enter the number of people:
           </div>
           <div>
             <CustomNewNumberInput nr={nrPersoane} setNr={setNrPersoane} />
@@ -376,7 +376,7 @@ const CustomAddUser = () => {
               marginBottom: "1rem",
             }}
           >
-            Introduceti modalitatea de transport:
+           Enter the mode of transport:
           </div>
           <div>
             <CustomNewStringInput
@@ -396,7 +396,7 @@ const CustomAddUser = () => {
               marginBottom: "1rem",
             }}
           >
-            Introduceti pretul unei nopti de cazare:
+           Enter the price of one night's accommodation:
           </div>
           <div>
             <CustomNewNumberInput nr={pretPerNoapte} setNr={setPretPerNoapte} />
@@ -409,7 +409,7 @@ const CustomAddUser = () => {
             marginBottom: "1rem",
           }}
         >
-          Pretul sejurului este {(nrZileConcediu - 1) * pretPerNoapte}
+          The price of the stay is {(nrZileConcediu - 1) * pretPerNoapte}
         </div>
       )}
 
@@ -421,7 +421,7 @@ const CustomAddUser = () => {
               marginBottom: "1rem",
             }}
           >
-            Introduceti moneda pentru sejur:
+            Enter the currency for the stay:
           </div>
           <div>
             <CustomNewStringInput
@@ -463,7 +463,7 @@ const CustomAddUser = () => {
               })
                 .then((response) => {
                   if (response.ok) {
-                    toast("Pachetul tau custom tocmai a fost adaugat!", {
+                    toast("Your custom package has just been added!", {
                       autoClose: 2500,
                       onClose: () => {
                         window.location.href = "/all-packages";
@@ -474,8 +474,8 @@ const CustomAddUser = () => {
                   }
                 })
                 .catch((error) => {
-                  console.error("A aparut o eroare:", error);
-                  toast.error("Eroare la adaugarea pachetului tau custom!");
+                  console.error("An error occurred:", error);
+                  toast.error("Error adding your custom package!");
                 });
             }}
           >

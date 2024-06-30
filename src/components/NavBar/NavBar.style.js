@@ -89,7 +89,7 @@ export const DropdownContainer = styled.div`
   border-bottom-left-radius: 10px;
   padding: 10px 0px;
   transition: background-color 1s ease;
-  @media screen and (max-width: 820px) {
+  @media screen and (max-width: 1170px) {
     display: block;
   }
 `;
@@ -118,7 +118,7 @@ export const LinkContainerDesktop = styled.div`
   width: 100%;
   gap: 10px;
 
-  @media screen and (max-width: 820px) {
+  @media screen and (max-width: 1170px) {
     display: none;
   }
 `;
@@ -141,7 +141,7 @@ export const ButtonDropdown = styled.button`
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 
-  @media screen and (max-width: 820px) {
+  @media screen and (max-width: 1170px) {
     display: block;
   }
 `;
