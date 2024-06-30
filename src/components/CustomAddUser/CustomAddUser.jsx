@@ -108,40 +108,26 @@ const CustomAddUser = () => {
     Germany: ["Berlin", "Munich", "Frankfurt", "Hamburg", "Cologne"],
     Italy: ["Rome", "Milan", "Naples", "Turin", "Palermo"],
     Spain: ["Madrid", "Barcelona", "Valencia", "Seville", "Zaragoza"],
-    "United States": [
-      "New York",
-      "Los Angeles",
-      "Chicago",
-      "Houston",
-      "Phoenix",
-    ],
-    Brazil: [
-      "São Paulo",
-      "Rio de Janeiro",
-      "Brasilia",
-      "Salvador",
-      "Fortaleza",
-    ],
+    "United States": ["New York", "Los Angeles", "Chicago", "Houston", "Phoenix"],
+    Brazil: ["São Paulo", "Rio de Janeiro", "Brasilia", "Salvador", "Fortaleza"],
     China: ["Beijing", "Shanghai", "Chongqing", "Tianjin", "Guangzhou"],
     India: ["Mumbai", "Delhi", "Bangalore", "Hyderabad", "Ahmedabad"],
-    Russia: [
-      "Moscow",
-      "Saint Petersburg",
-      "Novosibirsk",
-      "Yekaterinburg",
-      "Nizhny Novgorod",
-    ],
+    Russia: ["Moscow", "Saint Petersburg", "Novosibirsk", "Yekaterinburg", "Nizhny Novgorod"],
     Australia: ["Sydney", "Melbourne", "Brisbane", "Perth", "Adelaide"],
     Canada: ["Toronto", "Montreal", "Vancouver", "Calgary", "Edmonton"],
-    "United Kingdom": [
-      "London",
-      "Birmingham",
-      "Manchester",
-      "Glasgow",
-      "Liverpool",
-    ],
+    "United Kingdom": ["London", "Birmingham", "Manchester", "Glasgow", "Liverpool"],
+    Japan: ["Tokyo", "Osaka", "Nagoya", "Sapporo", "Fukuoka"],
+    "South Korea": ["Seoul", "Busan", "Incheon", "Daegu", "Daejeon"],
+    Mexico: ["Mexico City", "Guadalajara", "Monterrey", "Puebla", "Tijuana"],
+    Argentina: ["Buenos Aires", "Córdoba", "Rosario", "Mendoza", "La Plata"],
+    "South Africa": ["Johannesburg", "Cape Town", "Durban", "Pretoria", "Port Elizabeth"],
+    Turkey: ["Istanbul", "Ankara", "Izmir", "Bursa", "Antalya"],
+    "Saudi Arabia": ["Riyadh", "Jeddah", "Mecca", "Medina", "Dammam"],
+    Egypt: ["Cairo", "Alexandria", "Giza", "Shubra El Kheima", "Port Said"],
+    Indonesia: ["Jakarta", "Surabaya", "Bandung", "Medan", "Semarang"],
+    Nigeria: ["Lagos", "Kano", "Ibadan", "Abuja", "Port Harcourt"]
   };
-
+  
   const tari_indicativ = {
     Romania: "RO",
     France: "FR",
@@ -156,6 +142,16 @@ const CustomAddUser = () => {
     Australia: "AU",
     Canada: "CA",
     "United Kingdom": "GB",
+    Japan: "JP",
+    "South Korea": "KR",
+    Mexico: "MX",
+    Argentina: "AR",
+    "South Africa": "ZA",
+    Turkey: "TR",
+    "Saudi Arabia": "SA",
+    Egypt: "EG",
+    Indonesia: "ID",
+    Nigeria: "NG"
   };
 
   const [selectedCountry, setSelectedCountry] = useState(null);
