@@ -4,12 +4,23 @@ import {
   CustomAddContainer,
   PentruPozaAntete,
   StilPentruPozaLink,
+  CustomPackageImage,
+  SubmitCustomPackageButton,
 } from "./CustomAddUser.style";
 import { styled } from "@mui/system";
 
 import * as React from "react";
 import PropTypes from "prop-types";
 import { Button, buttonClasses } from "@mui/base/Button";
+
+import dayjs from "dayjs";
+
+import CustomNewNumberInput from "./CustomNewComponents/CustomNewNumperInput";
+import CustomNewCheckInDate from "./CustomNewComponents/CustomNewCheckInDate";
+import CustomNewCheckOutDate from "./CustomNewComponents/CustomNewCheckOutDate";
+import CustomNewStringInput from "./CustomNewComponents/CustomNewStringInput";
+
+import { ToastContainer, toast } from "react-toastify";
 
 const InputElement = styled("input")(
   ({ theme }) => `
@@ -77,6 +88,20 @@ const SvgButton = React.forwardRef(function SvgButton(props, ref) {
 });
 
 const CustomAddUser = () => {
+  const [inputObject, setInputObject] = useState({
+    tara: "",
+    oras: "",
+    imagine_pachet: "",
+    nr_zile_concediu: "",
+    zi_check_in: null,
+    zi_check_out: null,
+    nr_pers: "",
+    mod_transport: "",
+    pret_sejur: "",
+    moneda_sejur: "",
+    este_rezervat: 0,
+  });
+
   const countriesData = {
     Romania: ["Bucharest", "Cluj-Napoca", "Iasi", "Timisoara", "Constanta"],
     France: ["Paris", "Lyon", "Marseille", "Toulouse", "Nice"],
@@ -138,6 +163,20 @@ const CustomAddUser = () => {
 
   const [imageLink, setImageLink] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+
+  const [nrZileConcediu, setNrZileConcediu] = useState(null);
+
+  const [ziCheckIn, setZiCheckIn] = useState(dayjs().format("DD.MM.YYYY"));
+
+  const [ziCheckOut, setZiCheckOut] = useState(dayjs().format("DD.MM.YYYY"));
+
+  const [nrPersoane, setNrPersoane] = useState(null);
+
+  const [modTransport, setModTransport] = useState("");
+
+  const [pretPerNoapte, setPretPerNoapte] = useState(null);
+
+  const [monedaSejur, setMonedaSejur] = useState("");
 
   const [contor, setContor] = useState(0);
   const [trebuieAfisataPoza, setTrebuieAfisataPoza] = useState(1);
@@ -257,10 +296,9 @@ const CustomAddUser = () => {
           </PentruPozaAntete>
           {imageUrl && (
             <StilPentruPozaLink>
-              <img
+              <CustomPackageImage
                 src={imageUrl}
                 alt="Nu s-a introdus corect poza"
-                style={{ width: "75%", height: "auto", borderRadius: "10px" }}
               />
             </StilPentruPozaLink>
           )}
@@ -268,7 +306,186 @@ const CustomAddUser = () => {
       )}
 
       {/* NR ZILE CONCEDIU */}
-      {contor > 0 && <div>Acum trb ales nr zile concediu</div>}
+      {contor > 0 && (
+        <div>
+          <div
+            style={{
+              marginBottom: "1rem",
+            }}
+          >
+            Introduceti numarul de zile de concediu:
+          </div>
+          <div>
+            <CustomNewNumberInput
+              nr={nrZileConcediu}
+              setNr={setNrZileConcediu}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* ZI CHECK IN */}
+      {nrZileConcediu && (
+        <div
+          style={{
+            marginBottom: "1rem",
+          }}
+        >
+          <CustomNewCheckInDate
+            ziCheckIn={ziCheckIn}
+            setZiCheckIn={setZiCheckIn}
+          />
+        </div>
+      )}
+
+      {/* ZI CHECK OUT */}
+      {nrZileConcediu && (
+        <div
+          style={{
+            marginBottom: "1rem",
+          }}
+        >
+          <CustomNewCheckOutDate
+            ziCheckOut={ziCheckOut}
+            setZiCheckOut={setZiCheckOut}
+          />
+        </div>
+      )}
+
+      {/* NR PERSOANE */}
+      {nrZileConcediu > 0 && (
+        <div>
+          <div
+            style={{
+              marginBottom: "1rem",
+            }}
+          >
+            Introduceti numarul de persoane:
+          </div>
+          <div>
+            <CustomNewNumberInput nr={nrPersoane} setNr={setNrPersoane} />
+          </div>
+        </div>
+      )}
+
+      {/* MOD TRANSPORT */}
+      {nrPersoane > 0 && (
+        <div>
+          <div
+            style={{
+              marginBottom: "1rem",
+            }}
+          >
+            Introduceti modalitatea de transport:
+          </div>
+          <div>
+            <CustomNewStringInput
+              myString={modTransport}
+              setMyString={setModTransport}
+              myLabel={"Modalitatea de transport"}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* PRET SEJUR */}
+      {modTransport && (
+        <div>
+          <div
+            style={{
+              marginBottom: "1rem",
+            }}
+          >
+            Introduceti pretul unei nopti de cazare:
+          </div>
+          <div>
+            <CustomNewNumberInput nr={pretPerNoapte} setNr={setPretPerNoapte} />
+          </div>
+        </div>
+      )}
+      {pretPerNoapte > 0 && (
+        <div
+          style={{
+            marginBottom: "1rem",
+          }}
+        >
+          Pretul sejurului este {(nrZileConcediu - 1) * pretPerNoapte}
+        </div>
+      )}
+
+      {/* MONEDA SEJUR */}
+      {pretPerNoapte > 0 && (
+        <div>
+          <div
+            style={{
+              marginBottom: "1rem",
+            }}
+          >
+            Introduceti moneda pentru sejur:
+          </div>
+          <div>
+            <CustomNewStringInput
+              myString={monedaSejur}
+              setMyString={setMonedaSejur}
+              myLabel={"Moneda pentru sejur"}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* BUTON PENTRU SUBMIT */}
+      {monedaSejur && (
+        <div>
+          <SubmitCustomPackageButton
+            onClick={() => {
+              {
+                /* REALIZEZ POST IN DB JSON */
+              }
+              fetch(`http://localhost:3001/pachete`, {
+                method: "POST",
+                body: JSON.stringify({
+                  ...inputObject,
+                  tara: selectedCountry.value,
+                  oras: selectedCity.value,
+                  imagine_pachet: imageLink,
+                  nr_zile_concediu: nrZileConcediu,
+                  zi_check_in: ziCheckIn,
+                  zi_check_out: ziCheckOut,
+                  nr_pers: nrPersoane,
+                  mod_transport: modTransport,
+                  pret_sejur: (nrZileConcediu - 1) * pretPerNoapte,
+                  moneda_sejur: monedaSejur,
+                  este_rezervat: 0,
+                }),
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              })
+                .then((response) => {
+                  if (response.ok) {
+                    toast("Pachetul tau custom tocmai a fost adaugat!", {
+                      autoClose: 2500,
+                      onClose: () => {
+                        window.location.href = "/all-packages";
+                      },
+                    });
+                  } else {
+                    throw new Error("Network response was not ok");
+                  }
+                })
+                .catch((error) => {
+                  console.error("A aparut o eroare:", error);
+                  toast.error("Eroare la adaugarea pachetului tau custom!");
+                });
+            }}
+          >
+            Submit custom package
+          </SubmitCustomPackageButton>
+        </div>
+      )}
+
+      {/* TOASTER PENTRU NOTIFICARI */}
+      <ToastContainer />
     </CustomAddContainer>
   );
 };
