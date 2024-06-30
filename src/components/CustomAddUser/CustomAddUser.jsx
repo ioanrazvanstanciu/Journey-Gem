@@ -108,29 +108,65 @@ const CustomAddUser = () => {
     Germany: ["Berlin", "Munich", "Frankfurt", "Hamburg", "Cologne"],
     Italy: ["Rome", "Milan", "Naples", "Turin", "Palermo"],
     Spain: ["Madrid", "Barcelona", "Valencia", "Seville", "Zaragoza"],
-    "United States": ["New York", "Los Angeles", "Chicago", "Houston", "Phoenix"],
-    Brazil: ["São Paulo", "Rio de Janeiro", "Brasilia", "Salvador", "Fortaleza"],
+    "United States": [
+      "New York",
+      "Los Angeles",
+      "Chicago",
+      "Houston",
+      "Phoenix",
+    ],
+    Brazil: [
+      "São Paulo",
+      "Rio de Janeiro",
+      "Brasilia",
+      "Salvador",
+      "Fortaleza",
+    ],
     China: ["Beijing", "Shanghai", "Chongqing", "Tianjin", "Guangzhou"],
     India: ["Mumbai", "Delhi", "Bangalore", "Hyderabad", "Ahmedabad"],
-    Russia: ["Moscow", "Saint Petersburg", "Novosibirsk", "Yekaterinburg", "Nizhny Novgorod"],
+    Russia: [
+      "Moscow",
+      "Saint Petersburg",
+      "Novosibirsk",
+      "Yekaterinburg",
+      "Nizhny Novgorod",
+    ],
     Australia: ["Sydney", "Melbourne", "Brisbane", "Perth", "Adelaide"],
     Canada: ["Toronto", "Montreal", "Vancouver", "Calgary", "Edmonton"],
-    "United Kingdom": ["London", "Birmingham", "Manchester", "Glasgow", "Liverpool"],
+    "United Kingdom": [
+      "London",
+      "Birmingham",
+      "Manchester",
+      "Glasgow",
+      "Liverpool",
+    ],
     Japan: ["Tokyo", "Osaka", "Nagoya", "Sapporo", "Fukuoka"],
     "South Korea": ["Seoul", "Busan", "Incheon", "Daegu", "Daejeon"],
     Mexico: ["Mexico City", "Guadalajara", "Monterrey", "Puebla", "Tijuana"],
     Argentina: ["Buenos Aires", "Córdoba", "Rosario", "Mendoza", "La Plata"],
-    "South Africa": ["Johannesburg", "Cape Town", "Durban", "Pretoria", "Port Elizabeth"],
+    "South Africa": [
+      "Johannesburg",
+      "Cape Town",
+      "Durban",
+      "Pretoria",
+      "Port Elizabeth",
+    ],
     Turkey: ["Istanbul", "Ankara", "Izmir", "Bursa", "Antalya"],
     "Saudi Arabia": ["Riyadh", "Jeddah", "Mecca", "Medina", "Dammam"],
     Egypt: ["Cairo", "Alexandria", "Giza", "Shubra El Kheima", "Port Said"],
     Indonesia: ["Jakarta", "Surabaya", "Bandung", "Medan", "Semarang"],
     Nigeria: ["Lagos", "Kano", "Ibadan", "Abuja", "Port Harcourt"],
     Sweden: ["Stockholm", "Gothenburg", "Malmö", "Uppsala", "Västerås"],
-    Netherlands: ["Amsterdam", "Rotterdam", "The Hague", "Utrecht", "Eindhoven"],
-    Thailand: ["Bangkok", "Chiang Mai", "Phuket", "Pattaya", "Hat Yai"]
+    Netherlands: [
+      "Amsterdam",
+      "Rotterdam",
+      "The Hague",
+      "Utrecht",
+      "Eindhoven",
+    ],
+    Thailand: ["Bangkok", "Chiang Mai", "Phuket", "Pattaya", "Hat Yai"],
   };
-  
+
   const tari_indicativ = {
     Romania: "RO",
     France: "FR",
@@ -157,7 +193,7 @@ const CustomAddUser = () => {
     Nigeria: "NG",
     Sweden: "SE",
     Netherlands: "NL",
-    Thailand: "TH"
+    Thailand: "TH",
   };
 
   const [selectedCountry, setSelectedCountry] = useState(null);
@@ -241,7 +277,7 @@ const CustomAddUser = () => {
       {/* TARA */}
       <div>
         <label htmlFor="country-select">
-        Select the country for the desired package:
+          Select the country for the desired package:
         </label>
         <Select
           id="country-select"
@@ -274,7 +310,7 @@ const CustomAddUser = () => {
         <div>
           <PentruPozaAntete>
             <label htmlFor="image-url">
-            Enter the link for the picture of the desired package:
+              Enter the link for the picture of the desired package:
             </label>
             <InputElement
               value={imageLink}
@@ -286,22 +322,19 @@ const CustomAddUser = () => {
             <SvgButton onClick={handleToggleImage}>
               {trebuieAfisataPoza === 1 && (
                 <div style={{ textAlign: "center" }}>
-                 Display the chosen image
+                  Display the chosen image
                 </div>
               )}
               {trebuieAfisataPoza === 0 && (
                 <div style={{ textAlign: "center" }}>
-                 Hide the selected image
+                  Hide the selected image
                 </div>
               )}
             </SvgButton>
           </PentruPozaAntete>
           {imageUrl && (
             <StilPentruPozaLink>
-              <CustomPackageImage
-                src={imageUrl}
-                alt="Incorrect image url"
-              />
+              <CustomPackageImage src={imageUrl} alt="Incorrect image url" />
             </StilPentruPozaLink>
           )}
         </div>
@@ -362,7 +395,7 @@ const CustomAddUser = () => {
               marginBottom: "1rem",
             }}
           >
-           Enter the number of people:
+            Enter the number of people:
           </div>
           <div>
             <CustomNewNumberInput nr={nrPersoane} setNr={setNrPersoane} />
@@ -378,7 +411,7 @@ const CustomAddUser = () => {
               marginBottom: "1rem",
             }}
           >
-           Enter the mode of transport:
+            Enter the mode of transport:
           </div>
           <div>
             <CustomNewStringInput
@@ -398,7 +431,7 @@ const CustomAddUser = () => {
               marginBottom: "1rem",
             }}
           >
-           Enter the price of one night's accommodation:
+            Enter the price of one night's accommodation:
           </div>
           <div>
             <CustomNewNumberInput nr={pretPerNoapte} setNr={setPretPerNoapte} />
@@ -443,7 +476,7 @@ const CustomAddUser = () => {
               {
                 /* REALIZEZ POST IN DB JSON */
               }
-              fetch(`http://localhost:3001/pachete`, {
+              fetch(`https://apipachete.onrender.com/pachete`, {
                 method: "POST",
                 body: JSON.stringify({
                   ...inputObject,

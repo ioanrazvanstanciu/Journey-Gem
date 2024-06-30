@@ -21,7 +21,7 @@ export const handleReservePackage = (pachetul_meu) => {
     este_rezervat: 1,
   };
 
-  fetch(`http://localhost:3001/pachete/${pachet_modificat.id}`, {
+  fetch(`https://apipachete.onrender.com/pachete/${pachet_modificat.id}`, {
     method: "PUT",
     body: JSON.stringify(pachet_modificat),
     headers: {
@@ -112,7 +112,9 @@ function Package() {
               </PackageAllDetailsValoare>
             </PackageAllDetailsLinieDetaliu>
             <PackageAllDetailsLinieDetaliu>
-              <PackageAllDetailsAntet>Number of people: </PackageAllDetailsAntet>
+              <PackageAllDetailsAntet>
+                Number of people:{" "}
+              </PackageAllDetailsAntet>
               <PackageAllDetailsValoare>
                 {my_package.nr_pers}
               </PackageAllDetailsValoare>
